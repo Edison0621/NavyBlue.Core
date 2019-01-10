@@ -11,11 +11,9 @@
 // </copyright>
 // ***********************************************************************
 
-using NavyBlue.Lib.Jinyinmao;
 using NavyBlue.AspNetCore.Web.Diagnostics;
-using NavyBlue.AspNetCore.Web.Web.Diagnostics;
 
-namespace NavyBlue.AspNetCore.Web.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     AppWebExtensions.

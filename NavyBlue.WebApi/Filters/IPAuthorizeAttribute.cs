@@ -3,10 +3,10 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Web.Http.Controllers;
-using Moe.Lib.Web;
+using NavyBlue.AspNetCore.Web;
 using NavyBlue.Lib.Web;
 
-namespace NavyBlue.AspNetCore.Web.Web.Filters
+namespace NavyBlue.AspNetCore.Web.Filters
 {
     /// <summary>
     ///     IPAuthorizeAttribute.

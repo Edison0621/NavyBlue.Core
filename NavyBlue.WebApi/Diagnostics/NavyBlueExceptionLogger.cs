@@ -1,13 +1,13 @@
 ﻿using System;
 using MoeLib.Diagnostics;
-using Moe.Lib.Web;
+using NavyBlue.AspNetCore.Web;
 
-namespace NavyBlue.AspNetCore.Web.Web.Diagnostics
+namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
     /// <summary>
     ///     JinyinmaoExceptionLogger.
     /// </summary>
-    public sealed class JinyinmaoExceptionLogger : ExceptionLogger
+    public sealed class NavyBlueExceptionLogger : ExceptionLogger
     {
         private static readonly Lazy<IWebLogger> logger = new Lazy<IWebLogger>(() => InitApplicationLogger());
 

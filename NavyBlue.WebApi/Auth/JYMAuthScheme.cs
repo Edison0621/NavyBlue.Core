@@ -1,4 +1,4 @@
-﻿namespace NavyBlue.AspNetCore.Web.Web.Auth
+﻿namespace NavyBlue.AspNetCore.Web.Auth
 {
     /// <summary>
     ///     NBAuthScheme.

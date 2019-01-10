@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace Moe.Lib.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     Class AvailableValuesAttribute.

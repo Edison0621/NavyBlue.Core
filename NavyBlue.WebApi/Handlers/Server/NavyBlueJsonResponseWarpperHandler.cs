@@ -4,16 +4,17 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using NavyBlue.AspNetCore.Web;
 using NavyBlue.Lib;
 using NavyBlue.Lib.Web;
 using Newtonsoft.Json.Linq;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers.Server
+namespace NavyBlue.AspNetCore.Web.Handlers.Server
 {
     /// <summary>
     ///     JinyinmaoJsonResponseWapperHandler.
     /// </summary>
-    public class JinyinmaoJsonResponseWarpperHandler : DelegatingHandler
+    public class NavyBlueJsonResponseWarpperHandler : DelegatingHandler
     {
         /// <summary>
         ///     Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.

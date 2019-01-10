@@ -16,7 +16,7 @@ using System.Diagnostics;
 using System.Web.Http.Tracing;
 using MoeLib.Web;
 
-namespace NavyBlue.AspNetCore.Web.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     JinyinmaoApiController.

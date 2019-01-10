@@ -1,16 +1,14 @@
 ﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 using NavyBlue.Lib;
-using NavyBlue.Lib.TransientFaultHandling;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers.Client
+namespace NavyBlue.AspNetCore.Web.Handlers.Client
 {
     /// <summary>
     ///     JinyinmaoRetryHandler.
     /// </summary>
-    public class JinyinmaoRetryHandler : DelegatingHandler
+    public class NavyBlueRetryHandler : DelegatingHandler
     {
         private static readonly RetryPolicy retryPolicy = new RetryPolicy(new HttpRequestTransientErrorDetectionStrategy(), 5, 3.Seconds());
 

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using NavyBlue.WebApi;
 using Newtonsoft.Json.Serialization;
 
-namespace NavyBlue.AspNetCore.Web.Web.Diagnostics
+namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
     /// <summary>
     ///     Asp.Net TraceWriter for Jinyinmao.

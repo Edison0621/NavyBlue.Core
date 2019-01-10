@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Web.Http.Tracing;
 
-namespace NavyBlue.AspNetCore.Web.Web.Diagnostics
+namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
     /// <summary>
     ///     Represents an extension methods for <see cref="T:System.Web.Http.Tracing.ITraceWriter" />.

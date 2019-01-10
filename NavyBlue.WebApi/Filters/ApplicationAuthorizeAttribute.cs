@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System;
 
-namespace NavyBlue.AspNetCore.Web.Web.Filters
+namespace NavyBlue.AspNetCore.Web.Filters
 {
     /// <summary>
     ///     ApplicationAuthorizeAttribute.

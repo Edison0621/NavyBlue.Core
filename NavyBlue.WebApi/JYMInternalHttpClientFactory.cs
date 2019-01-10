@@ -6,12 +6,12 @@ using System.Net.Http.Headers;
 using NavyBlue.Lib;
 using NavyBlue.Lib.Jinyinmao;
 using MoeLib.Diagnostics;
-using NavyBlue.AspNetCore.Web.Web.Auth;
-using NavyBlue.AspNetCore.Web.Web.Diagnostics;
-using NavyBlue.AspNetCore.Web.Web.Handlers;
-using NavyBlue.AspNetCore.Web.Web.Handlers.Client;
+using NavyBlue.AspNetCore.Web.Auth;
+using NavyBlue.AspNetCore.Web.Diagnostics;
+using NavyBlue.AspNetCore.Web.Handlers;
+using NavyBlue.AspNetCore.Web.Handlers.Client;
 
-namespace NavyBlue.AspNetCore.Web.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     NBHttpClient.
@@ -30,10 +30,10 @@ namespace NavyBlue.AspNetCore.Web.Web
             List<DelegatingHandler> delegatingHandlers = new List<DelegatingHandler>
             {
                 // new JinyinmaoServicePermissionHandler(serviceName),
-                new JinyinmaoTraceEntryHandler(traceEntry),
-                new JinyinmaoHttpStatusHandler(),
+                new NavyBlueTraceEntryHandler(traceEntry),
+                new NavyBlueHttpStatusHandler(),
                 new JinyinmaoLogHandler("HTTP Client Request", "HTTP Client Response"),
-                new JinyinmaoRetryHandler()
+                new NavyBlueRetryHandler()
             };
             delegatingHandlers.AddRange(handlers);
 

@@ -5,11 +5,10 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using NavyBlue.Lib;
-using NavyBlue.Lib.Jinyinmao;
 using MoeLib.Diagnostics;
-using NavyBlue.AspNetCore.Web.Web.Diagnostics;
+using NavyBlue.AspNetCore.Web.Diagnostics;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers
+namespace NavyBlue.AspNetCore.Web.Handlers
 {
     /// <summary>
     ///     JinyinmaoLogHandler.

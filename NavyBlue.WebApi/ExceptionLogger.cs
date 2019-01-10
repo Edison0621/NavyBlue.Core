@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-namespace Moe.Lib.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     ExceptionLogger.

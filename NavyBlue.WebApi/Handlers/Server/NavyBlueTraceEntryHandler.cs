@@ -4,15 +4,14 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using NavyBlue.Lib;
-using NavyBlue.Lib.Jinyinmao;
 using MoeLib.Web;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers.Server
+namespace NavyBlue.AspNetCore.Web.Handlers.Server
 {
     /// <summary>
     ///     JinyinmaoTraceEntryHandler.
     /// </summary>
-    public class JinyinmaoTraceEntryHandler : DelegatingHandler
+    public class NavyBlueTraceEntryHandler : DelegatingHandler
     {
         private List<string> IPWhitelists
         {

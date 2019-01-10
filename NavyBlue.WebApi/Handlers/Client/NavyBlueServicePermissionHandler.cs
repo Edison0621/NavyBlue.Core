@@ -5,25 +5,21 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Azure;
 using NavyBlue.Lib;
-using NavyBlue.Lib.Jinyinmao;
-using NavyBlue.AspNetCore.Web.Web.Auth;
+using NavyBlue.AspNetCore.Web.Auth;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers.Client
+namespace NavyBlue.AspNetCore.Web.Handlers.Client
 {
     /// <summary>
     ///     JinyinmaoServicePermissionHandler.
     /// </summary>
-    public class JinyinmaoServicePermissionHandler : DelegatingHandler
+    public class NavyBlueServicePermissionHandler : DelegatingHandler
     {
-        private static readonly bool ignorePermission = CloudConfigurationManager.GetSetting("IgnorePermission").AsBoolean(false);
-
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoServicePermissionHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueServicePermissionHandler" /> class.
         /// </summary>
         /// <param name="serviceName">Name of the service.</param>
-        public JinyinmaoServicePermissionHandler(string serviceName)
+        public NavyBlueServicePermissionHandler(string serviceName)
         {
             this.ServiceName = serviceName;
         }
@@ -41,22 +37,22 @@ namespace NavyBlue.AspNetCore.Web.Web.Handlers.Client
         /// <exception cref="T:System.ArgumentNullException">The <paramref name="request" /> was null.</exception>
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            if (!ignorePermission)
-            {
-                KeyValuePair<string, string>? permission = App.Condigurations.GetPermission(this.ServiceName);
-                if (!permission.HasValue)
-                {
-                    this.HandleUnauthorizedRequest();
-                }
-                else
-                {
-                    if (request.RequestUri.Host == "mock.jinyinmao.com.cn")
-                    {
-                        request.RequestUri = new Uri(new Uri(permission.Value.Key), request.RequestUri.PathAndQuery);
-                    }
-                    request.Headers.Authorization = new AuthenticationHeaderValue(NBAuthScheme.NBInternalAuth, permission.Value.Value);
-                }
-            }
+            //if (!ignorePermission)
+            //{
+            //    KeyValuePair<string, string>? permission = App.Configurations.GetPermission(this.ServiceName);
+            //    if (!permission.HasValue)
+            //    {
+            //        this.HandleUnauthorizedRequest();
+            //    }
+            //    else
+            //    {
+            //        if (request.RequestUri.Host == "mock.nb.com.cn")
+            //        {
+            //            request.RequestUri = new Uri(new Uri(permission.Value.Key), request.RequestUri.PathAndQuery);
+            //        }
+            //        request.Headers.Authorization = new AuthenticationHeaderValue(NBAuthScheme.NBInternalAuth, permission.Value.Value);
+            //    }
+            //}
 
             HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
             if (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized)

@@ -3,12 +3,12 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers.Client
+namespace NavyBlue.AspNetCore.Web.Handlers.Client
 {
     /// <summary>
     ///     JinyinmaoAcceptHandler.
     /// </summary>
-    public class JinyinmaoAcceptHandler : DelegatingHandler
+    public class NavyBlueAcceptHandler : DelegatingHandler
     {
         /// <summary>
         ///     Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.

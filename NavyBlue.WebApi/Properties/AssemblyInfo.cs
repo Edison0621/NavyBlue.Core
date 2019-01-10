@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("NavyBlue.AspNetCore.Web.Web")]
-[assembly: AssemblyDescription("NavyBlue.AspNetCore.Web.Web")]
+[assembly: AssemblyTitle("NavyBlue.AspNetCore.Web")]
+[assembly: AssemblyDescription("NavyBlue.AspNetCore.Web")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NavyBlue.AspNetCore.Web.Web")]
+[assembly: AssemblyProduct("NavyBlue.AspNetCore.Web")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using Moe.Lib.Web;
+using NavyBlue.AspNetCore.Web;
 
 namespace MoeLib.Web
 {

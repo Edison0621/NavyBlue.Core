@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http.Controllers;
+using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Moe.Lib.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     An action filter for validating action parameter, if validate failed, create a 400 response.
@@ -11,15 +10,11 @@ namespace Moe.Lib.Web
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class ActionParameterValidateAttribute : OrderedActionFilterAttribute
     {
-        /// <summary>
-        ///     Occurs before the action method is invoked.
-        /// </summary>
-        /// <param name="actionContext">The action context.</param>
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!actionContext.ModelState.IsValid)
+            if (!context.ModelState.IsValid)
             {
-                actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, actionContext.ModelState);
+                context.Response = context.Request.CreateErrorResponse(HttpStatusCode.BadRequest, context.ModelState);
             }
         }
     }

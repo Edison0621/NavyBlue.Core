@@ -3,7 +3,7 @@ using NavyBlue.Lib;
 using MoeLib.Diagnostics;
 using MoeLib.Web;
 
-namespace NavyBlue.AspNetCore.Web.Web.Diagnostics
+namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
     /// <summary>
     ///     HttpRequestMessageExtensions.

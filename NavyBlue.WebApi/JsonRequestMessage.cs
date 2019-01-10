@@ -1,4 +1,4 @@
-﻿namespace Moe.Lib.Web
+﻿namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     Class JsonRequestMessage.

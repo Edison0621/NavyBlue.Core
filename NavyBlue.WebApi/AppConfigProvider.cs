@@ -13,7 +13,7 @@
 
 using System;
 using System.Configuration;
-using Moe.Lib;
+using NavyBlue.Lib;
 
 namespace NavyBlue.AspNetCore.Web
 {

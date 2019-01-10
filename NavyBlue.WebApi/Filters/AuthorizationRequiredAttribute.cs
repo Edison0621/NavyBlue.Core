@@ -3,10 +3,10 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
-using NavyBlue.AspNetCore.Web.Web.Auth;
-using Moe.Lib.Web;
+using NavyBlue.AspNetCore.Web.Auth;
+using NavyBlue.AspNetCore.Web;
 
-namespace NavyBlue.AspNetCore.Web.Web.Filters
+namespace NavyBlue.AspNetCore.Web.Filters
 {
     /// <summary>
     ///     Class AuthorizationRequiredAttribute.

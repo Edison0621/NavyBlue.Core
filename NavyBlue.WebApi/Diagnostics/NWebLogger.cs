@@ -20,7 +20,7 @@ using NavyBlue.Lib;
 using MoeLib.Diagnostics;
 using NavyBlue.AspNetCore.Web.Diagnostics;
 
-namespace NavyBlue.AspNetCore.Web.Web.Diagnostics
+namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
     /// <summary>
     ///     NWebLogger.

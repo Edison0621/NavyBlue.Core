@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using NavyBlue.AspNetCore.Web.Web.Handlers;
-using NavyBlue.AspNetCore.Web.Web.Handlers.Server;
+using NavyBlue.AspNetCore.Web.Handlers;
+using NavyBlue.AspNetCore.Web.Handlers.Server;
 
 namespace NavyBlue.Lib.Web
 {
@@ -20,7 +20,7 @@ namespace NavyBlue.Lib.Web
         {
             builder.Use(context =>
             {
-                new JinyinmaoAuthorizationHandler(bearerAuthKeys, governmentServerPublicKey);
+                new NavyBlueAuthorizationHandler(bearerAuthKeys, governmentServerPublicKey);
                 return context;
             });
 
@@ -58,7 +58,7 @@ namespace NavyBlue.Lib.Web
         {
             builder.Use(context =>
             {
-                new JinyinmaoJsonResponseWarpperHandler();
+                new NavyBlueJsonResponseWarpperHandler();
                 return context;
             });
 
@@ -115,7 +115,7 @@ namespace NavyBlue.Lib.Web
         {
             builder.Use(context =>
             {
-                new JinyinmaoTraceEntryHandler();
+                new NavyBlueTraceEntryHandler();
                 return context;
             });
 

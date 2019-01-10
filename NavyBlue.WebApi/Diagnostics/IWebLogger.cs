@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using MoeLib.Diagnostics;
 
-namespace NavyBlue.AspNetCore.Web.Web.Diagnostics
+namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
     /// <summary>
     ///     Interface IWebLogger

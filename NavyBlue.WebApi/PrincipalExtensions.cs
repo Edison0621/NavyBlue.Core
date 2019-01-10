@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Security.Principal;
 
-namespace NavyBlue.AspNetCore.Web.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     PrincipalExtensions.

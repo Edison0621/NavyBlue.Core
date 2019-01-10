@@ -3,41 +3,40 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using NavyBlue.Lib;
-using NavyBlue.Lib.Jinyinmao;
 using MoeLib.Diagnostics;
-using NavyBlue.AspNetCore.Web.Web.Diagnostics;
+using NavyBlue.AspNetCore.Web.Diagnostics;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers.Client
+namespace NavyBlue.AspNetCore.Web.Handlers.Client
 {
     /// <summary>
     ///     JinyinmaoTraceEntryHandler.
     /// </summary>
-    public class JinyinmaoTraceEntryHandler : DelegatingHandler
+    public class NavyBlueTraceEntryHandler : DelegatingHandler
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoTraceEntryHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueTraceEntryHandler" /> class.
         /// </summary>
         /// <param name="traceEntry">The trace entry.</param>
-        public JinyinmaoTraceEntryHandler(TraceEntry traceEntry)
+        public NavyBlueTraceEntryHandler(TraceEntry traceEntry)
         {
             this.TraceEntry = traceEntry;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoTraceEntryHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueTraceEntryHandler" /> class.
         /// </summary>
         /// <param name="request">The request.</param>
-        public JinyinmaoTraceEntryHandler(HttpRequestMessage request)
+        public NavyBlueTraceEntryHandler(HttpRequestMessage request)
         {
             this.TraceEntry = request.GetTraceEntry();
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoTraceEntryHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueTraceEntryHandler" /> class.
         /// </summary>
         /// <param name="traceEntry">The trace entry.</param>
         /// <param name="userId">The user identifier.</param>
-        public JinyinmaoTraceEntryHandler(TraceEntry traceEntry, string userId)
+        public NavyBlueTraceEntryHandler(TraceEntry traceEntry, string userId)
         {
             this.TraceEntry = traceEntry;
             if (userId.IsNotNullOrEmpty())
@@ -47,11 +46,11 @@ namespace NavyBlue.AspNetCore.Web.Web.Handlers.Client
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoTraceEntryHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueTraceEntryHandler" /> class.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="userId">The user identifier.</param>
-        public JinyinmaoTraceEntryHandler(HttpRequestMessage request, string userId)
+        public NavyBlueTraceEntryHandler(HttpRequestMessage request, string userId)
         {
             this.TraceEntry = request.GetTraceEntry();
             if (userId.IsNotNullOrEmpty())
@@ -61,9 +60,9 @@ namespace NavyBlue.AspNetCore.Web.Web.Handlers.Client
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoTraceEntryHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueTraceEntryHandler" /> class.
         /// </summary>
-        public JinyinmaoTraceEntryHandler()
+        public NavyBlueTraceEntryHandler()
         {
             this.TraceEntry = null;
         }

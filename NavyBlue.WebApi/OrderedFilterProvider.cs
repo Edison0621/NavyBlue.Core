@@ -5,7 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace Moe.Lib.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     Class OrderedFilterProvider.

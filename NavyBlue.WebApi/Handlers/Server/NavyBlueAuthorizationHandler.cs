@@ -9,44 +9,41 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
-using Microsoft.Azure;
 using NavyBlue.Lib;
-using NavyBlue.Lib.Jinyinmao;
-using NavyBlue.AspNetCore.Web.Web.Auth;
+using NavyBlue.AspNetCore.Web.Auth;
 using MoeLib.Web;
 using Newtonsoft.Json.Linq;
 
-namespace NavyBlue.AspNetCore.Web.Web.Handlers.Server
+namespace NavyBlue.AspNetCore.Web.Handlers.Server
 {
     /// <summary>
     ///     JinyinmaoAuthorizationHandler.
     /// </summary>
-    public class JinyinmaoAuthorizationHandler : DelegatingHandler
+    public class NavyBlueAuthorizationHandler : DelegatingHandler
     {
         private const string CRYPTO_SERVICE_PROVIDER_ERROR_MESSAGE = "JinyinmaoAuthorizationHandler CryptoServiceProvider can not initialize. The GovernmentServerPublicKey may be in bad format. GovernmentServerPublicKey: {0}";
         private readonly NBAccessTokenProtector accessTokenProtector;
 
-        static JinyinmaoAuthorizationHandler()
+        static NavyBlueAuthorizationHandler()
         {
             UseSwaggerAsApplicationForDev = CloudConfigurationManager.GetSetting("UseSwaggerAsApplicationForDev").AsBoolean(false);
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoAuthorizationHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueAuthorizationHandler" /> class.
         /// </summary>
         /// <param name="bearerAuthKeys">The bearerAuthKeys.</param>
-        public JinyinmaoAuthorizationHandler(string bearerAuthKeys)
+        public NavyBlueAuthorizationHandler(string bearerAuthKeys)
         {
             this.accessTokenProtector = new NBAccessTokenProtector(bearerAuthKeys);
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoAuthorizationHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueAuthorizationHandler" /> class.
         /// </summary>
         /// <param name="bearerAuthKeys">The bearerAuthKeys.</param>
         /// <param name="governmentServerPublicKey">The government server public key.</param>
-        public JinyinmaoAuthorizationHandler(string bearerAuthKeys, string governmentServerPublicKey)
+        public NavyBlueAuthorizationHandler(string bearerAuthKeys, string governmentServerPublicKey)
         {
             this.accessTokenProtector = new NBAccessTokenProtector(bearerAuthKeys);
             this.GovernmentServerPublicKey = governmentServerPublicKey;

@@ -27,7 +27,7 @@ using MoeLib.Web;
 using NavyBlue.Lib;
 using ReflectionMagic;
 
-namespace Moe.Lib.Web
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     HttpUtils.

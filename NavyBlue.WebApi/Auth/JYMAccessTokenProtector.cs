@@ -5,7 +5,7 @@ using System.Configuration;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
-namespace NavyBlue.AspNetCore.Web.Web.Auth
+namespace NavyBlue.AspNetCore.Web.Auth
 {
     /// <summary>
     ///     NBAccessTokenProtector.
