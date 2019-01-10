@@ -68,7 +68,10 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             jObject.Add("retCode", (response.IsSuccessStatusCode ? "00" : "10") + (int)response.StatusCode);
             jObject.Add("retMsg", response.IsSuccessStatusCode ? "ok" : (jObject.GetValue("message", StringComparison.OrdinalIgnoreCase)?.Value<string>() ?? ""));
 
-            response.Content = request.CreateResponse(HttpStatusCode.OK, jObject).Content;
+            //response.Content = request.CreateResponse(HttpStatusCode.OK, jObject).Content;
+
+            response.Content = new StringContent(jObject.ToJson());
+            response.StatusCode = HttpStatusCode.OK;
         }
     }
 }

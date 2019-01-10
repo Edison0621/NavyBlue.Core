@@ -12,6 +12,9 @@
 // *****************************************************************************************************************
 
 using NavyBlue.Lib;
+using Polly;
+using Polly.Retry;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,12 +22,10 @@ using System.Threading.Tasks;
 namespace NavyBlue.AspNetCore.Web.Handlers.Client
 {
     /// <summary>
-    ///     JinyinmaoRetryHandler.
+    ///     NavyBlueRetryHandler.
     /// </summary>
     public class NavyBlueRetryHandler : DelegatingHandler
     {
-        private static readonly RetryPolicy retryPolicy = new RetryPolicy(new HttpRequestTransientErrorDetectionStrategy(), 5, 3.Seconds());
-
         /// <summary>
         ///     Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.
         /// </summary>
@@ -36,7 +37,18 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Client
         /// <exception cref="T:System.ArgumentNullException">The <paramref name="request" /> was null.</exception>
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            return retryPolicy.ExecuteAction(() => base.SendAsync(request, cancellationToken));
+            var policy = Policy
+                .Handle<HttpRequestException>()
+                .WaitAndRetry(new[]
+                {
+                    TimeSpan.FromSeconds(3),
+                    TimeSpan.FromSeconds(3),
+                    TimeSpan.FromSeconds(3),
+                    TimeSpan.FromSeconds(3),
+                    TimeSpan.FromSeconds(3)
+                });
+
+            return policy.ExecuteAsync(() => base.SendAsync(request, cancellationToken));
         }
     }
 }

@@ -11,6 +11,8 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using System;
+
 namespace NavyBlue.WebApi
 {
     internal static class TraceKindHelper
@@ -25,7 +27,10 @@ namespace NavyBlue.WebApi
         public static void Validate(TraceKind value, string parameterValue)
         {
             if (!IsDefined(value))
-                throw Error.InvalidEnumArgument(parameterValue, (int)value, typeof(TraceKind));
+            {
+                throw new Exception($"error occurs with the value of parameterValue and the tracekind is {(int)value}"); 
+                //Error.InvalidEnumArgument(parameterValue, (int)value, typeof(TraceKind));
+            }
         }
     }
 }

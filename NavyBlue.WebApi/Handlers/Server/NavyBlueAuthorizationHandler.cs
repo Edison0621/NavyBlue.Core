@@ -11,6 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Http;
 using NavyBlue.AspNetCore.Web.Auth;
 using NavyBlue.Lib;
 using Newtonsoft.Json.Linq;
@@ -29,11 +30,11 @@ using System.Threading.Tasks;
 namespace NavyBlue.AspNetCore.Web.Handlers.Server
 {
     /// <summary>
-    ///     JinyinmaoAuthorizationHandler.
+    ///     NavyBlueAuthorizationHandler.
     /// </summary>
     public class NavyBlueAuthorizationHandler : DelegatingHandler
     {
-        private const string CRYPTO_SERVICE_PROVIDER_ERROR_MESSAGE = "JinyinmaoAuthorizationHandler CryptoServiceProvider can not initialize. The GovernmentServerPublicKey may be in bad format. GovernmentServerPublicKey: {0}";
+        private const string CRYPTO_SERVICE_PROVIDER_ERROR_MESSAGE = "NavyBlueAuthorizationHandler CryptoServiceProvider can not initialize. The GovernmentServerPublicKey may be in bad format. GovernmentServerPublicKey: {0}";
         private readonly NBAccessTokenProtector accessTokenProtector;
 
         static NavyBlueAuthorizationHandler()
@@ -260,21 +261,29 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
                 jObject.Add("access_token", this.accessTokenProtector.Protect(this.Identity));
                 jObject.Add("expiration", timestamp);
 
-                response.Content = request.CreateResponse(response.StatusCode, jObject).Content;
+                response.Content = new StringContent(jObject.ToJson()); //request.CreateResponse(response.StatusCode, jObject).Content;
+                response.StatusCode = response.StatusCode;
             }
             else
             {
-                response.Content = request.CreateResponse(HttpStatusCode.OK, new
+                //response.Content = request.CreateResponse(HttpStatusCode.OK, new
+                //{
+                //    access_token = this.accessTokenProtector.Protect(this.Identity),
+                //    expiration = timestamp
+                //}).Content;
+
+                response.Content = new StringContent(new
                 {
                     access_token = this.accessTokenProtector.Protect(this.Identity),
                     expiration = timestamp
-                }).Content;
+                }.ToJson()); //request.CreateResponse(response.StatusCode, jObject).Content;
+                response.StatusCode = response.StatusCode;
             }
         }
 
         private bool IsFromLocalhost(HttpRequestMessage request)
         {
-            return request.IsLocal();
+            return HttpUtils.IsFromLocalhost(request);
         }
 
         private bool IsFromSwagger(HttpRequestMessage request)

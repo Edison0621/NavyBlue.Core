@@ -367,6 +367,16 @@ namespace NavyBlue.AspNetCore.Web
         }
 
         /// <summary>
+        ///     Determines whether the specified HTTP httpContext is from localhost.
+        /// </summary>
+        /// <param name="httpContext">The HTTP context.</param>
+        /// <returns><c>true</c> if the specified HTTP httpContext is localhost; otherwise, <c>false</c>.</returns>
+        public static bool IsFromLocalhost(HttpRequestMessage response)
+        {
+            return response.Headers.Host == "::1";
+        }
+
+        /// <summary>
         ///     Determines whether the specified request is from mobile device.
         /// </summary>
         /// <param name="httpContext">The HTTP context.</param>

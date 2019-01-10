@@ -25,17 +25,16 @@ namespace NavyBlue.WebApi
     {
         private readonly Lazy<Dictionary<object, object>> _properties = new Lazy<Dictionary<object, object>>(() => new Dictionary<object, object>());
         private TraceKind _traceKind;
-        private TraceLevel _traceLevel;
 
         /// <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Tracing.TraceRecord" /> class.</summary>
         /// <param name="request">The message request.</param>
         /// <param name="category">The trace category.</param>
         /// <param name="level">The trace level.</param>
-        public TraceRecord(HttpRequestMessage request, string category, TraceLevel level)
+        public TraceRecord(HttpRequestMessage request,Guid traceId, string category, TraceLevel level)
         {
             this.Timestamp = DateTime.UtcNow;
-            this.Request = request;
-            this.RequestId = request != null ? request.GetCorrelationId() : Guid.Empty;
+            this.Request = request;//context.TraceIdentifier
+            this.RequestId = traceId;
             this.Category = category;
             this.Level = level;
         }
@@ -62,15 +61,7 @@ namespace NavyBlue.WebApi
 
         /// <summary>Gets or sets the tracing level.</summary>
         /// <returns>The tracing level.</returns>
-        public TraceLevel Level
-        {
-            get { return this._traceLevel; }
-            set
-            {
-                TraceLevelHelper.Validate(value, nameof(value));
-                this._traceLevel = value;
-            }
-        }
+        public TraceLevel Level { get; set; }
 
         /// <summary>Gets or sets the message.</summary>
         /// <returns>The message.</returns>
