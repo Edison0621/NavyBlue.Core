@@ -1,4 +1,17 @@
-﻿using System.Net.Http;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : NavyBlueAcceptHandler.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:01
+// *****************************************************************************************************************
+// <copyright file="NavyBlueAcceptHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;

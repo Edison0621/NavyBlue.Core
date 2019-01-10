@@ -1,5 +1,18 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : ActionParameterRequiredAttribute.cs
+// Created          : 2019-01-09  20:20
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:02
+// *****************************************************************************************************************
+// <copyright file="ActionParameterRequiredAttribute.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 
 namespace NavyBlue.AspNetCore.Web
 {

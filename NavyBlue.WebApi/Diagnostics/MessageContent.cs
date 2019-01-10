@@ -1,15 +1,15 @@
-﻿// ***********************************************************************
-// Project          : MoeLib
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
 // File             : MessageContent.cs
-// Created          : 2015-11-20  5:55 PM
+// Created          : 2019-01-10  9:35
 //
-// Last Modified By : Siqi Lu(lu.siqi@outlook.com)
-// Last Modified On : 2015-11-25  2:50 PM
-// ***********************************************************************
-// <copyright file="MessageContent.cs" company="Shanghai Yuyi Mdt InfoTech Ltd.">
-//     Copyright ©  2012-2015 Shanghai Yuyi Mdt InfoTech Ltd. All rights reserved.
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:00
+// *****************************************************************************************************************
+// <copyright file="MessageContent.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
-// ***********************************************************************
+// *****************************************************************************************************************
 
 using System;
 using System.Collections.Generic;

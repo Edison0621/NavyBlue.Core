@@ -1,10 +1,23 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : NavyBlueTraceEntryHandler.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:01
+// *****************************************************************************************************************
+// <copyright file="NavyBlueTraceEntryHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using MoeLib.Diagnostics;
+using NavyBlue.AspNetCore.Web.Diagnostics;
+using NavyBlue.Lib;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
-using MoeLib.Diagnostics;
-using NavyBlue.AspNetCore.Web.Diagnostics;
 
 namespace NavyBlue.AspNetCore.Web.Handlers.Client
 {
@@ -94,10 +107,12 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Client
                 {
                     request.Headers.TryAddWithoutValidation("X-NB-IP", this.TraceEntry.SourceIP);
                 }
+
                 if (this.TraceEntry.SourceUserAgent.IsNullOrEmpty())
                 {
                     request.Headers.TryAddWithoutValidation("X-NB-UA", this.TraceEntry.SourceUserAgent);
                 }
+
                 if (this.TraceEntry.UserId.IsNullOrEmpty())
                 {
                     request.Headers.TryAddWithoutValidation("X-NB-UID", this.TraceEntry.UserId);

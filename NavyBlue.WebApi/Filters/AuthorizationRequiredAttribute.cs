@@ -1,10 +1,21 @@
-﻿using System;
-using System.Net;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : AuthorizationRequiredAttribute.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:01
+// *****************************************************************************************************************
+// <copyright file="AuthorizationRequiredAttribute.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
 using NavyBlue.AspNetCore.Web.Auth;
-using NavyBlue.AspNetCore.Web;
+using System;
 
 namespace NavyBlue.AspNetCore.Web.Filters
 {
@@ -44,7 +55,7 @@ namespace NavyBlue.AspNetCore.Web.Filters
         public override void OnAuthorization(AuthorizationFilterContext context)
         {
             string schemeName = this.SchemeName ?? NBAuthScheme.Bearer;
-            if (context.HttpContext.Request.Headers[HeaderNames.Scheme] == StringValues.Empty 
+            if (context.HttpContext.Request.Headers[HeaderNames.Scheme] == StringValues.Empty
                 || !string.Equals(context.HttpContext.Request.Headers[HeaderNames.Scheme], schemeName, StringComparison.OrdinalIgnoreCase))
             {
                 //context.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "");

@@ -1,4 +1,17 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : ILogger.cs
+// Created          : 2019-01-10  9:35
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:59
+// *****************************************************************************************************************
+// <copyright file="ILogger.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using System;
 using System.Collections.Generic;
 
 namespace MoeLib.Diagnostics

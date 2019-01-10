@@ -1,19 +1,19 @@
-﻿// ***********************************************************************
-// Project          : MoeLib
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
 // File             : AppConfigProvider.cs
-// Created          : 2015-11-20  5:55 PM
+// Created          : 2019-01-10  11:11
 //
-// Last Modified By : Siqi Lu(lu.siqi@outlook.com)
-// Last Modified On : 2015-11-25  12:43 PM
-// ***********************************************************************
-// <copyright file="AppConfigProvider.cs" company="Shanghai Yuyi Mdt InfoTech Ltd.">
-//     Copyright ©  2012-2015 Shanghai Yuyi Mdt InfoTech Ltd. All rights reserved.
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:02
+// *****************************************************************************************************************
+// <copyright file="AppConfigProvider.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
-// ***********************************************************************
+// *****************************************************************************************************************
 
+using NavyBlue.Lib;
 using System;
 using System.Configuration;
-using NavyBlue.Lib;
 
 namespace NavyBlue.AspNetCore.Web
 {

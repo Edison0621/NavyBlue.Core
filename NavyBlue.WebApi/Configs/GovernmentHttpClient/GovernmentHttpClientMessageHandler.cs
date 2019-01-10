@@ -1,11 +1,24 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : GovernmentHttpClientMessageHandler.cs
+// Created          : 2019-01-10  11:12
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:59
+// *****************************************************************************************************************
+// <copyright file="GovernmentHttpClientMessageHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using NavyBlue.Lib;
+using System;
 using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
 
 namespace NavyBlue.AspNetCore.Web.Configs.GovernmentHttpClient
 {

@@ -1,4 +1,17 @@
-﻿using NavyBlue.Lib;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : JYMAccessTokenProtector.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:58
+// *****************************************************************************************************************
+// <copyright file="JYMAccessTokenProtector.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using NavyBlue.Lib;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

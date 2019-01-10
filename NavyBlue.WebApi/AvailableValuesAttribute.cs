@@ -1,4 +1,17 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : AvailableValuesAttribute.cs
+// Created          : 2019-01-09  20:20
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:02
+// *****************************************************************************************************************
+// <copyright file="AvailableValuesAttribute.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;

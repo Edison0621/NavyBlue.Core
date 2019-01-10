@@ -1,19 +1,32 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : NavyBlueLogHandler.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:02
+// *****************************************************************************************************************
+// <copyright file="NavyBlueLogHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using MoeLib.Diagnostics;
+using NavyBlue.AspNetCore.Web.Diagnostics;
+using NavyBlue.Lib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
-using MoeLib.Diagnostics;
-using NavyBlue.AspNetCore.Web.Diagnostics;
 
 namespace NavyBlue.AspNetCore.Web.Handlers
 {
     /// <summary>
     ///     JinyinmaoLogHandler.
     /// </summary>
-    public class JinyinmaoLogHandler : DelegatingHandler
+    public class NavyBlueLogHandler : DelegatingHandler
     {
         /// <summary>
         ///     The logger
@@ -23,18 +36,18 @@ namespace NavyBlue.AspNetCore.Web.Handlers
         private static readonly string[] mediaTypes = { "application/json", "application/xml", "application/jsonp" };
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoLogHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueLogHandler" /> class.
         /// </summary>
-        public JinyinmaoLogHandler(string requestTag, string responseTag)
+        public NavyBlueLogHandler(string requestTag, string responseTag)
         {
             this.RequestTag = requestTag;
             this.ResponseTag = responseTag;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="JinyinmaoLogHandler" /> class.
+        ///     Initializes a new instance of the <see cref="NavyBlueLogHandler" /> class.
         /// </summary>
-        public JinyinmaoLogHandler()
+        public NavyBlueLogHandler()
         {
             this.RequestTag = "ASP.NET HTTP Request";
             this.ResponseTag = "ASP.NET HTTP Response";

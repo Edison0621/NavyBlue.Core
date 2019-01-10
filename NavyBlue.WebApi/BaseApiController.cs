@@ -1,33 +1,30 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
-// File             : JsonRequestMessage.cs
+// File             : BaseApiController.cs
 // Created          : 2019-01-09  20:20
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  15:03
+// Last Modified On : 2019-01-10  15:02
 // *****************************************************************************************************************
-// <copyright file="JsonRequestMessage.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+// <copyright file="BaseApiController.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
+
 namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
-    ///     Class JsonRequestMessage.
+    ///     MoeApiController.
     /// </summary>
-    public class JsonRequestMessage
+    public abstract class BaseApiController : Controller
     {
         /// <summary>
-        ///     Gets or sets the method.
+        ///     Gets the logger.
         /// </summary>
-        /// <value>The method.</value>
-        public string Method { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the relative URL.
-        /// </summary>
-        /// <value>The relative URL.</value>
-        public string RelativeUrl { get; set; }
+        /// <value>The logger.</value>
+        public ITraceWriter Logger = new DiagnosticsTraceWriter();
     }
 }

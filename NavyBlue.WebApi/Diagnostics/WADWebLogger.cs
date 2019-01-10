@@ -1,25 +1,24 @@
-﻿// ***********************************************************************
-// Project          : MoeLib
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
 // File             : WADWebLogger.cs
-// Created          : 2015-11-20  5:55 PM
+// Created          : 2019-01-09  20:14
 //
-// Last Modified By : Siqi Lu(lu.siqi@outlook.com)
-// Last Modified On : 2015-11-26  4:10 PM
-// ***********************************************************************
-// <copyright file="WADWebLogger.cs" company="Shanghai Yuyi Mdt InfoTech Ltd.">
-//     Copyright ©  2012-2015 Shanghai Yuyi Mdt InfoTech Ltd. All rights reserved.
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:00
+// *****************************************************************************************************************
+// <copyright file="WADWebLogger.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
-// ***********************************************************************
+// *****************************************************************************************************************
 
+using MoeLib.Diagnostics;
+using NavyBlue.Lib;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
-using MoeLib.Diagnostics;
-using NavyBlue.AspNetCore.Web.Diagnostics;
 
 namespace NavyBlue.AspNetCore.Web.Diagnostics
 {

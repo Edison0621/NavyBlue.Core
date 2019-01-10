@@ -1,9 +1,22 @@
-﻿using System;
-using System.Net.Http;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : JinyinmaoTraceWriter.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:59
+// *****************************************************************************************************************
+// <copyright file="JinyinmaoTraceWriter.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
 using MoeLib.Diagnostics;
-using System.Diagnostics;
 using NavyBlue.WebApi;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Diagnostics;
+using System.Net.Http;
 
 namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
@@ -19,9 +32,16 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
             get { return logger.Value; }
         }
 
+        #region ITraceWriter Members
+
         public TraceLevel LevelFilter => throw new NotImplementedException();
 
-        #region ITraceWriter Members
+        public void Trace(TraceLevel level, string message, Exception ex)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion ITraceWriter Members
 
         /// <summary>
         ///     The loggers
@@ -47,8 +67,6 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
             this.LogTraceRecord(record);
         }
 
-        #endregion ITraceWriter Members
-
         private static int GetLogLevel(TraceLevel traceLevel)
         {
             return (int)traceLevel;
@@ -68,11 +86,6 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
             TraceEntry traceEntry = traceRecord.Request?.GetTraceEntry();
 
             this.Logger.Log(GetLogLevel(traceRecord.Level), traceRecord.Message, traceRecord.Request, "ASP.NET Trace", 0UL, string.Empty, traceEntry, traceRecord.Exception);
-        }
-
-        public void Trace(TraceLevel level, string message, Exception ex)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,7 +1,20 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : IWebLogger.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:59
+// *****************************************************************************************************************
+// <copyright file="IWebLogger.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using MoeLib.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using MoeLib.Diagnostics;
 
 namespace NavyBlue.AspNetCore.Web.Diagnostics
 {

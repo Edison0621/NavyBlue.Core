@@ -1,7 +1,20 @@
-﻿using System.Net.Http;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : NavyBlueRetryHandler.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:01
+// *****************************************************************************************************************
+// <copyright file="NavyBlueRetryHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using NavyBlue.Lib;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
 
 namespace NavyBlue.AspNetCore.Web.Handlers.Client
 {

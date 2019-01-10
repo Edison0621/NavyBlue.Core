@@ -1,15 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using NavyBlue.Lib;
-using NavyBlue.Lib.Jinyinmao;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : JYMInternalHttpClientFactory.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:03
+// *****************************************************************************************************************
+// <copyright file="JYMInternalHttpClientFactory.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
 using MoeLib.Diagnostics;
 using NavyBlue.AspNetCore.Web.Auth;
 using NavyBlue.AspNetCore.Web.Diagnostics;
 using NavyBlue.AspNetCore.Web.Handlers;
 using NavyBlue.AspNetCore.Web.Handlers.Client;
+using NavyBlue.Lib;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace NavyBlue.AspNetCore.Web
 {
@@ -32,7 +44,7 @@ namespace NavyBlue.AspNetCore.Web
                 // new JinyinmaoServicePermissionHandler(serviceName),
                 new NavyBlueTraceEntryHandler(traceEntry),
                 new NavyBlueHttpStatusHandler(),
-                new JinyinmaoLogHandler("HTTP Client Request", "HTTP Client Response"),
+                new NavyBlueLogHandler("HTTP Client Request", "HTTP Client Response"),
                 new NavyBlueRetryHandler()
             };
             delegatingHandlers.AddRange(handlers);
@@ -42,6 +54,7 @@ namespace NavyBlue.AspNetCore.Web
                 AllowAutoRedirect = true,
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
             }, delegatingHandlers.ToArray());
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml", 0.5));
@@ -60,7 +73,7 @@ namespace NavyBlue.AspNetCore.Web
             }
             else
             {
-                client.BaseAddress = new Uri("http://service.jinyinmao.com.cn/");
+                client.BaseAddress = new Uri("http://xxxx.com.cn/");
             }
 
             return client;

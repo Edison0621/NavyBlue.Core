@@ -1,10 +1,22 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : NavyBlueTraceEntryHandler.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:01
+// *****************************************************************************************************************
+// <copyright file="NavyBlueTraceEntryHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using NavyBlue.Lib;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
-using MoeLib.Web;
 
 namespace NavyBlue.AspNetCore.Web.Handlers.Server
 {
@@ -83,7 +95,8 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
 
         private bool IsFromLocalhost(HttpRequestMessage request)
         {
-            return request.IsLocal();
+            return false;
+            //TODO return request.Headers.Connection.();
         }
 
         private bool IsFromSwagger(HttpRequestMessage request)
@@ -92,6 +105,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             {
                 return request.Headers.Referrer.AbsoluteUri.Contains("swagger", StringComparison.OrdinalIgnoreCase);
             }
+
             return false;
         }
 

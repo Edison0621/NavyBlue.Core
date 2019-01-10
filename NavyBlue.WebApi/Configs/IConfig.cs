@@ -1,4 +1,17 @@
-﻿using System.Collections.Generic;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : IConfig.cs
+// Created          : 2019-01-10  11:12
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:59
+// *****************************************************************************************************************
+// <copyright file="IConfig.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using System.Collections.Generic;
 
 namespace NavyBlue.AspNetCore.Web.Configs
 {
@@ -8,7 +21,7 @@ namespace NavyBlue.AspNetCore.Web.Configs
     public interface IConfig
     {
         /// <summary>
-        /// Gets the ip whitelists.
+        ///     Gets the ip whitelists.
         /// </summary>
         /// <value>The ip whitelists.</value>
         List<string> IPWhitelists { get; }

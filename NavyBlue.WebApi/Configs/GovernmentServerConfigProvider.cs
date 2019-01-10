@@ -1,10 +1,23 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : GovernmentServerConfigProvider.cs
+// Created          : 2019-01-10  11:12
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:59
+// *****************************************************************************************************************
+// <copyright file="GovernmentServerConfigProvider.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using NavyBlue.AspNetCore.Web.Configs.GovernmentHttpClient;
+using NavyBlue.Lib;
+using System;
 using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using NavyBlue.AspNetCore.Web.Configs.GovernmentHttpClient;
-using NavyBlue.Lib;
 
 namespace NavyBlue.AspNetCore.Web.Configs
 {
@@ -55,6 +68,7 @@ namespace NavyBlue.AspNetCore.Web.Configs
                         string content = await response.Content.ReadAsStringAsync();
                         return content.FromJson<SourceConfig>();
                     }
+
                     throw new HttpRequestException($"Can not get \"Configurations\" from government server {this.HttpClient.BaseAddress}, {response.StatusCode} {response.ReasonPhrase}");
                 }).Result;
             }

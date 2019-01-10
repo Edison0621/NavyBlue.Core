@@ -1,4 +1,20 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : NavyBlueAuthorizationHandler.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:01
+// *****************************************************************************************************************
+// <copyright file="NavyBlueAuthorizationHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using NavyBlue.AspNetCore.Web.Auth;
+using NavyBlue.Lib;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -9,10 +25,6 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
-using NavyBlue.AspNetCore.Web.Auth;
-using MoeLib.Web;
-using Newtonsoft.Json.Linq;
 
 namespace NavyBlue.AspNetCore.Web.Handlers.Server
 {
@@ -69,6 +81,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
                 {
                     return null;
                 }
+
                 try
                 {
                     RSACryptoServiceProvider provider = new RSACryptoServiceProvider(2048);
@@ -130,7 +143,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
 
             if (HasAuthorizationHeader(request, NBAuthScheme.Bearer) && request.Headers.Authorization?.Parameter == null
-                && this.Identity != null && this.Identity.IsAuthenticated && this.Identity.AuthenticationType == NBAuthScheme.Bearer && response.StatusCode == HttpStatusCode.OK)
+                                                                     && this.Identity != null && this.Identity.IsAuthenticated && this.Identity.AuthenticationType == NBAuthScheme.Bearer && response.StatusCode == HttpStatusCode.OK)
             {
                 await this.GenerateAndSetAccessToken(request, response);
             }
@@ -235,6 +248,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
                 {
                     content = await response.Content.ReadAsStringAsync();
                 }
+
                 if (content.IsNullOrEmpty())
                 {
                     content = "{}";
@@ -269,6 +283,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             {
                 return request.Headers.Referrer.AbsoluteUri.Contains("swagger", StringComparison.OrdinalIgnoreCase);
             }
+
             return false;
         }
 

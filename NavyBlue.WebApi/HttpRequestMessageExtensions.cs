@@ -1,8 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using NavyBlue.AspNetCore.Web;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : HttpRequestMessageExtensions.cs
+// Created          : 2019-01-09  20:20
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:03
+// *****************************************************************************************************************
+// <copyright file="HttpRequestMessageExtensions.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
 
-namespace MoeLib.Web
+using System.Collections.Generic;
+using System.Net.Http;
+
+namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     Extends the HttpRequestMessage.
@@ -45,7 +57,7 @@ namespace MoeLib.Web
         /// <exception cref="System.ArgumentNullException">If the key is null, throw the ArgumentNullException.</exception>
         public static string GetQueryString(this HttpRequestMessage request, string key)
         {
-            return HttpUtils.GetQueryString(request, key);
+            return HttpUtils.GetQueryStringValue(request, key);
         }
 
         /// <summary>

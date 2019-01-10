@@ -1,4 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : HttpConfigurationExtensions.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:02
+// *****************************************************************************************************************
+// <copyright file="HttpConfigurationExtensions.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using Microsoft.AspNetCore.Builder;
 using NavyBlue.AspNetCore.Web.Handlers;
 using NavyBlue.AspNetCore.Web.Handlers.Server;
 
@@ -99,7 +112,7 @@ namespace NavyBlue.Lib.Web
         {
             builder.Use(context =>
             {
-                new JinyinmaoLogHandler(requestTag, responseTag);
+                new NavyBlueLogHandler(requestTag, responseTag);
                 return context;
             });
 

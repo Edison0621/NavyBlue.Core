@@ -1,15 +1,15 @@
-﻿// ***********************************************************************
-// Project          : MoeLib
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
 // File             : LogManager.cs
-// Created          : 2015-11-23  5:22 PM
+// Created          : 2019-01-10  9:56
 //
-// Last Modified By : Siqi Lu(lu.siqi@outlook.com)
-// Last Modified On : 2015-11-25  10:11 AM
-// ***********************************************************************
-// <copyright file="LogManager.cs" company="Shanghai Yuyi Mdt InfoTech Ltd.">
-//     Copyright ©  2012-2015 Shanghai Yuyi Mdt InfoTech Ltd. All rights reserved.
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:00
+// *****************************************************************************************************************
+// <copyright file="LogManager.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
-// ***********************************************************************
+// *****************************************************************************************************************
 
 using MoeLib.Diagnostics;
 

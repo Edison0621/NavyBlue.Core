@@ -1,4 +1,17 @@
-﻿namespace NavyBlue.AspNetCore.Web.Configs.GovernmentHttpClient
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : ApplicationConfigurationsFetchRequest.cs
+// Created          : 2019-01-10  11:12
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  14:58
+// *****************************************************************************************************************
+// <copyright file="ApplicationConfigurationsFetchRequest.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+namespace NavyBlue.AspNetCore.Web.Configs.GovernmentHttpClient
 {
     /// <summary>
     ///     ApplicationConfigurationsFetchRequest.

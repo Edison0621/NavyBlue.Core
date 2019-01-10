@@ -1,6 +1,19 @@
-﻿using System;
-using System.Net;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : ActionParameterValidateAttribute.cs
+// Created          : 2019-01-09  20:20
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:02
+// *****************************************************************************************************************
+// <copyright file="ActionParameterValidateAttribute.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using System.Net;
 
 namespace NavyBlue.AspNetCore.Web
 {

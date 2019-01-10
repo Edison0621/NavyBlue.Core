@@ -1,13 +1,24 @@
-﻿using System;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : NavyBlueJsonResponseWarpperHandler.cs
+// Created          : 2019-01-09  20:14
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-10  15:01
+// *****************************************************************************************************************
+// <copyright file="NavyBlueJsonResponseWarpperHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
+using NavyBlue.Lib;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using NavyBlue.AspNetCore.Web;
-using NavyBlue.Lib;
-using NavyBlue.Lib.Web;
-using Newtonsoft.Json.Linq;
 
 namespace NavyBlue.AspNetCore.Web.Handlers.Server
 {
@@ -45,6 +56,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             {
                 content = await response.Content.ReadAsStringAsync();
             }
+
             if (content.IsNullOrEmpty())
             {
                 content = "{}";

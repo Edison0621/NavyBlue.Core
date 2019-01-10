@@ -2,15 +2,14 @@
 // Project          : NavyBlue
 // File             : TraceRecord.cs
 // Created          : 2019-01-10  10:13
-// 
+//
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  10:13
+// Last Modified On : 2019-01-10  15:03
 // *****************************************************************************************************************
 // <copyright file="TraceRecord.cs" company="Shanghai Future Mdt InfoTech Ltd.">
-//     Copyright ©  2012-2018 Mdt InfoTech Ltd. All rights reserved.
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
-
 
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace NavyBlue.WebApi
     [DebuggerDisplay("Category: {Category}, Operation: {Operation}, Level: {Level}, Kind: {Kind}")]
     public class TraceRecord
     {
-        private Lazy<Dictionary<object, object>> _properties = new Lazy<Dictionary<object, object>>((Func<Dictionary<object, object>>)(() => new Dictionary<object, object>()));
+        private readonly Lazy<Dictionary<object, object>> _properties = new Lazy<Dictionary<object, object>>(() => new Dictionary<object, object>());
         private TraceKind _traceKind;
         private TraceLevel _traceLevel;
 
@@ -53,10 +52,7 @@ namespace NavyBlue.WebApi
         /// <returns>The kind of trace.</returns>
         public TraceKind Kind
         {
-            get
-            {
-                return this._traceKind;
-            }
+            get { return this._traceKind; }
             set
             {
                 TraceKindHelper.Validate(value, nameof(value));
@@ -68,10 +64,7 @@ namespace NavyBlue.WebApi
         /// <returns>The tracing level.</returns>
         public TraceLevel Level
         {
-            get
-            {
-                return this._traceLevel;
-            }
+            get { return this._traceLevel; }
             set
             {
                 TraceLevelHelper.Validate(value, nameof(value));
@@ -95,10 +88,7 @@ namespace NavyBlue.WebApi
         /// <returns>The optional user-defined properties.</returns>
         public Dictionary<object, object> Properties
         {
-            get
-            {
-                return this._properties.Value;
-            }
+            get { return this._properties.Value; }
         }
 
         /// <summary>Gets the <see cref="T:System.Net.Http.HttpRequestMessage" /> from the record.</summary>
