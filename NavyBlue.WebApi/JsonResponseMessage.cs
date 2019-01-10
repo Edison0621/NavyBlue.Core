@@ -1,0 +1,36 @@
+﻿using System.Collections.Generic;
+
+namespace Moe.Lib.Web
+{
+    /// <summary>
+    ///     Class JsonResponseMessage.
+    /// </summary>
+    public class JsonResponseMessage
+    {
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="JsonResponseMessage" /> class.
+        /// </summary>
+        public JsonResponseMessage()
+        {
+            this.Headers = new Dictionary<string, string>();
+        }
+
+        /// <summary>
+        ///     Gets or sets the body.
+        /// </summary>
+        /// <value>The body.</value>
+        public string Body { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the code.
+        /// </summary>
+        /// <value>The code.</value>
+        public int Code { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the headers.
+        /// </summary>
+        /// <value>The headers.</value>
+        public Dictionary<string, string> Headers { get; set; }
+    }
+}
