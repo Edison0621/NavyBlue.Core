@@ -49,11 +49,13 @@ namespace NavyBlue.AspNetCore.Web
             };
             delegatingHandlers.AddRange(handlers);
 
-            HttpClient client = HttpClientFactory.Create(new HttpClientHandler
-            {
-                AllowAutoRedirect = true,
-                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            }, delegatingHandlers.ToArray());
+            //HttpClient client = HttpClientFactory.Create(new HttpClientHandler
+            //{
+            //    AllowAutoRedirect = true,
+            //    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            //}, delegatingHandlers.ToArray());
+
+            HttpClient client = new HttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));

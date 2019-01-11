@@ -82,11 +82,13 @@ namespace NavyBlue.AspNetCore.Web.Configs
 
         private static HttpClient InitHttpClient()
         {
-            HttpClient client = HttpClientFactory.Create(new HttpClientHandler
-            {
-                AllowAutoRedirect = true,
-                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            }, new GovernmentHttpClientMessageHandler());
+            //TODO HttpClient client = HttpClientFactory.Create(new HttpClientHandler
+            //{
+            //    AllowAutoRedirect = true,
+            //    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            //}, new GovernmentHttpClientMessageHandler());
+
+            HttpClient client = new HttpClient();
 
             client.BaseAddress = new Uri($"http://nb-{App.Host.Environment.ToLowerInvariant()}-government.jinyinmao.com.cn/");
             client.Timeout = 1.Minutes();

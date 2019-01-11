@@ -14,6 +14,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Net;
+using Microsoft.AspNetCore.Http;
 
 namespace NavyBlue.AspNetCore.Web
 {
@@ -21,13 +22,14 @@ namespace NavyBlue.AspNetCore.Web
     ///     An action filter for validating action parameter, if validate failed, create a 400 response.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class ActionParameterValidateAttribute : OrderedActionFilterAttribute
+    public class ActionParameterValidateAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!context.ModelState.IsValid)
             {
-                context.Response = context.Request.CreateErrorResponse(HttpStatusCode.BadRequest, context.ModelState);
+                context.HttpContext.Response.WriteAsync(context.ModelState.Values.ToString()).ConfigureAwait(false).GetAwaiter().GetResult();
+                    //= context.Request.CreateErrorResponse(HttpStatusCode.BadRequest, context.ModelState);
             }
         }
     }

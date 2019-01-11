@@ -26,37 +26,47 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Net.Http.Headers;
+using NavyBlue.AspNetCore.Web;
 
-namespace NavyBlue.AspNetCore.Web.Handlers.Server
+namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {
     /// <summary>
-    ///     NavyBlueAuthorizationHandler.
+    ///     AuthorizationMiddleware.
     /// </summary>
-    public class NavyBlueAuthorizationHandler : DelegatingHandler
+    public class AuthorizationMiddleware : INavyBlueMiddleware
     {
         private const string CRYPTO_SERVICE_PROVIDER_ERROR_MESSAGE = "NavyBlueAuthorizationHandler CryptoServiceProvider can not initialize. The GovernmentServerPublicKey may be in bad format. GovernmentServerPublicKey: {0}";
         private readonly NBAccessTokenProtector accessTokenProtector;
 
-        static NavyBlueAuthorizationHandler()
+        private readonly RequestDelegate _next;
+
+        public AuthorizationMiddleware(RequestDelegate next)
         {
-            UseSwaggerAsApplicationForDev = CloudConfigurationManager.GetSetting("UseSwaggerAsApplicationForDev").AsBoolean(false);
+            _next = next;
+        }
+
+        static AuthorizationMiddleware()
+        {
+            //TODO UseSwaggerAsApplicationForDev = CloudConfigurationManager.GetSetting("UseSwaggerAsApplicationForDev").AsBoolean(false);
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="NavyBlueAuthorizationHandler" /> class.
+        ///     Initializes a new instance of the <see cref="AuthorizationMiddleware" /> class.
         /// </summary>
         /// <param name="bearerAuthKeys">The bearerAuthKeys.</param>
-        public NavyBlueAuthorizationHandler(string bearerAuthKeys)
+        public AuthorizationMiddleware(string bearerAuthKeys)
         {
             this.accessTokenProtector = new NBAccessTokenProtector(bearerAuthKeys);
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="NavyBlueAuthorizationHandler" /> class.
+        ///     Initializes a new instance of the <see cref="AuthorizationMiddleware" /> class.
         /// </summary>
         /// <param name="bearerAuthKeys">The bearerAuthKeys.</param>
         /// <param name="governmentServerPublicKey">The government server public key.</param>
-        public NavyBlueAuthorizationHandler(string bearerAuthKeys, string governmentServerPublicKey)
+        public AuthorizationMiddleware(string bearerAuthKeys, string governmentServerPublicKey)
         {
             this.accessTokenProtector = new NBAccessTokenProtector(bearerAuthKeys);
             this.GovernmentServerPublicKey = governmentServerPublicKey;
@@ -98,13 +108,17 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
 
         private ClaimsIdentity Identity
         {
-            get { return HttpContext.Current.User?.Identity as ClaimsIdentity; }
-            set { HttpContext.Current.User = new ClaimsPrincipal(value); }
+            get; //TODO { return new ClaimsIdentity(); } //HttpContext.Current.User?.Identity as ClaimsIdentity; }
+            set; //HttpContext.Current.User = new ClaimsPrincipal(value);
         }
 
         private List<string> IPWhitelists
         {
-            get { return App.Configurations.GetIPWhitelists(); }
+            get
+            {
+                return new List<string>();
+                //return App.Configurations.GetIPWhitelists();
+            }
         }
 
         /// <summary>
@@ -116,70 +130,45 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
         /// <param name="request">The HTTP request message to send to the server.</param>
         /// <param name="cancellationToken">A cancellation token to cancel operation.</param>
         /// <exception cref="T:System.ArgumentNullException">The <paramref name="request" /> was null.</exception>
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        public async Task Invoke(HttpContext context)
         {
-            FillAuthorizationWithCustomeHeader(request);
-
-            if (HasAuthorizationHeader(request, NBAuthScheme.Bearer) && request.Headers.Authorization?.Parameter != null)
+            if (HasAuthorizationHeader(context.Request, NBAuthScheme.Bearer) && context.Request.Headers[HeaderNames.Authorization] != StringValues.Empty)
             {
-                this.AuthorizeUserViaBearerToken(request);
+                this.AuthorizeUserViaBearerToken(context.Request);
             }
-            else if (this.GovernmentServerPublicKey != null && HasAuthorizationHeader(request, NBAuthScheme.NBInternalAuth))
+            else if (this.GovernmentServerPublicKey != null && HasAuthorizationHeader(context.Request, NBAuthScheme.NBInternalAuth))
             {
-                this.AuthorizeApplicationViaAuthToken(request);
+                this.AuthorizeApplicationViaAuthToken(context.Request);
             }
-            else if (UseSwaggerAsApplicationForDev && this.IsFromSwagger(request))
+            else if (UseSwaggerAsApplicationForDev && this.IsFromSwagger(context.Request))
             {
                 this.AuthorizeApplicationIfFromSwagger();
             }
-            else if (this.IsFromWhitelists(request))
+            else if (this.IsFromWhitelists(context.Request))
             {
-                this.AuthorizeApplicationIfFromWhitelistst(request);
+                this.AuthorizeApplicationIfFromWhitelistst(context.Request);
             }
-            else if (this.IsFromLocalhost(request))
+            else if (HttpUtils.IsFromLocalhost(context))
             {
                 this.AuthorizeApplicationIfFromLocalhost();
             }
 
-            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-
-            if (HasAuthorizationHeader(request, NBAuthScheme.Bearer) && request.Headers.Authorization?.Parameter == null
-                                                                     && this.Identity != null && this.Identity.IsAuthenticated && this.Identity.AuthenticationType == NBAuthScheme.Bearer && response.StatusCode == HttpStatusCode.OK)
+            if (HasAuthorizationHeader(context.Request)
+                && context.Request.Headers["X-NB-Authorization"] == StringValues.Empty
+                && this.Identity != null
+                && this.Identity.IsAuthenticated
+                && this.Identity.AuthenticationType == NBAuthScheme.Bearer
+                && context.Response.StatusCode == (int)HttpStatusCode.OK)
             {
-                await this.GenerateAndSetAccessToken(request, response);
+                await this.GenerateAndSetAccessToken(context);
             }
 
-            return response;
+            await this._next.Invoke(context);
         }
 
-        private static void FillAuthorizationWithCustomeHeader(HttpRequestMessage request)
+        private static bool HasAuthorizationHeader(HttpRequest request, string scheme = "Bearer")
         {
-            try
-            {
-                if (!HasAuthorizationHeader(request) && request.Headers.Contains("X-NB-Authorization"))
-                {
-                    string headerValue = request.GetHeader("X-NB-Authorization");
-                    if (headerValue.IsNotNullOrEmpty())
-                    {
-                        request.Headers.Authorization = AuthenticationHeaderValue.Parse(headerValue);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                //ignore
-            }
-        }
-
-        private static bool HasAuthorizationHeader(HttpRequestMessage request, string scheme)
-        {
-            return request.Headers.Authorization?.Scheme != null &&
-                   string.Equals(request.Headers.Authorization.Scheme, scheme, StringComparison.OrdinalIgnoreCase);
-        }
-
-        private static bool HasAuthorizationHeader(HttpRequestMessage request)
-        {
-            return request.Headers.Authorization?.Scheme != null;
+            return request.Headers["X-NB-Authorization"] != StringValues.Empty && request.Headers["X-NB-Authorization"].Contains(scheme);
         }
 
         private void AuthorizeApplicationIfFromLocalhost()
@@ -200,9 +189,9 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             }, NBAuthScheme.NBInternalAuth);
         }
 
-        private void AuthorizeApplicationIfFromWhitelistst(HttpRequestMessage request)
+        private void AuthorizeApplicationIfFromWhitelistst(HttpRequest request)
         {
-            string ip = request.GetUserHostAddress();
+            string ip = request.Host.Host;
             this.Identity = new ClaimsIdentity(new List<Claim>
             {
                 new Claim(ClaimTypes.Name, $"IP: {ip}"),
@@ -210,9 +199,9 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             }, NBAuthScheme.NBInternalAuth);
         }
 
-        private void AuthorizeApplicationViaAuthToken(HttpRequestMessage request)
+        private void AuthorizeApplicationViaAuthToken(HttpRequest request)
         {
-            string token = request.Headers.Authorization?.Parameter.ToBase64Bytes().ASCII();
+            string token = request.Headers["X-NB-Authorization"].ToString().ToBase64Bytes().ASCII();
             string[] tokenPiece = token?.Split(',');
             if (tokenPiece?.Length == 5)
             {
@@ -220,7 +209,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
                 string sign = tokenPiece[4];
                 if (this.CryptoServiceProvider.VerifyData(ticket.GetBytesOfASCII(), new SHA1CryptoServiceProvider(), sign.ToBase64Bytes()))
                 {
-                    if (tokenPiece[3].AsLong(0) > DateTime.UtcNow.UnixTimestamp() && tokenPiece[1] == App.Host.Role)
+                    if (tokenPiece[3].AsLong(0) > DateTime.UtcNow.UnixTimestamp() && tokenPiece[1] == "")//TODO App.Host.Role)
                     {
                         this.Identity = new ClaimsIdentity(new List<Claim>
                         {
@@ -232,22 +221,22 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
             }
         }
 
-        private void AuthorizeUserViaBearerToken(HttpRequestMessage request)
+        private void AuthorizeUserViaBearerToken(HttpRequest request)
         {
-            this.Identity = this.accessTokenProtector.Unprotect(request.Headers.Authorization.Parameter);
+            this.Identity = this.accessTokenProtector.Unprotect(request.Headers["X-NB-Authorization"]);
         }
 
-        private async Task GenerateAndSetAccessToken(HttpRequestMessage request, HttpResponseMessage response)
+        private async Task GenerateAndSetAccessToken(HttpContext context)
         {
             Claim claim = this.Identity.FindFirst(ClaimTypes.Expiration);
             long timestamp = claim?.Value?.AsLong() ?? DateTime.UtcNow.UnixTimestamp();
 
-            if (response.Content?.Headers.ContentType.MediaType == "application/json")
+            if (context.Response.ContentType == "application/json")
             {
                 string content = null;
-                if (response.Content != null)
+                if (context.Response != null)
                 {
-                    content = await response.Content.ReadAsStringAsync();
+                    //content = context.Response.ReadBodyAsStringAsync();
                 }
 
                 if (content.IsNullOrEmpty())
@@ -261,44 +250,31 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
                 jObject.Add("access_token", this.accessTokenProtector.Protect(this.Identity));
                 jObject.Add("expiration", timestamp);
 
-                response.Content = new StringContent(jObject.ToJson()); //request.CreateResponse(response.StatusCode, jObject).Content;
-                response.StatusCode = response.StatusCode;
+                //context.Response.Body = jObject.ToJson().ToStream(); //request.CreateResponse(response.StatusCode, jObject).Content;
             }
             else
             {
-                //response.Content = request.CreateResponse(HttpStatusCode.OK, new
+                //context.Response.Body = new
                 //{
                 //    access_token = this.accessTokenProtector.Protect(this.Identity),
                 //    expiration = timestamp
-                //}).Content;
-
-                response.Content = new StringContent(new
-                {
-                    access_token = this.accessTokenProtector.Protect(this.Identity),
-                    expiration = timestamp
-                }.ToJson()); //request.CreateResponse(response.StatusCode, jObject).Content;
-                response.StatusCode = response.StatusCode;
+                //}.ToJson().ToStream();
             }
         }
 
-        private bool IsFromLocalhost(HttpRequestMessage request)
+        private bool IsFromSwagger(HttpRequest request)
         {
-            return HttpUtils.IsFromLocalhost(request);
-        }
-
-        private bool IsFromSwagger(HttpRequestMessage request)
-        {
-            if (request.Headers.Referrer != null)
+            if (request.Headers[HeaderNames.Referer] != StringValues.Empty)
             {
-                return request.Headers.Referrer.AbsoluteUri.Contains("swagger", StringComparison.OrdinalIgnoreCase);
+                return request.Headers[HeaderNames.Referer].ToString().Contains("swagger", StringComparison.OrdinalIgnoreCase);
             }
 
             return false;
         }
 
-        private bool IsFromWhitelists(HttpRequestMessage request)
+        private bool IsFromWhitelists(HttpRequest request)
         {
-            return this.IPWhitelists != null && this.IPWhitelists.Contains(request.GetUserHostAddress());
+            return this.IPWhitelists != null && this.IPWhitelists.Contains(request.Host.Host);
         }
     }
 }

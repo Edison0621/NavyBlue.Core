@@ -57,11 +57,11 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
         /// <param name="category">The logical category for the trace.  Users can define their own.</param>
         /// <param name="level">The <see cref="T:System.Web.Http.Tracing.TraceLevel" /> at which to write this trace.</param>
         /// <param name="traceAction">The action to invoke if tracing is enabled.  The caller is expected to fill in the fields of the given <see cref="T:System.Web.Http.Tracing.TraceRecord" /> in this action.</param>
-        public void Trace(HttpRequestMessage request, string category, TraceLevel level, Action<TraceRecord> traceAction)
+        public void Trace(HttpRequestMessage request,Guid traceId, string category, TraceLevel level, Action<TraceRecord> traceAction)
         {
             if (level == TraceLevel.Off || category != "Application") return;
 
-            TraceRecord record = new TraceRecord(request, category, level);
+            TraceRecord record = new TraceRecord(request, traceId, category, level);
 
             traceAction(record);
             this.LogTraceRecord(record);

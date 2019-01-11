@@ -4,9 +4,9 @@ using System.Net;
 using System.Threading.Tasks;
 using NavyBlue.Lib;
 
-namespace NavyBlue.AspNetCore.Web
+namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {
-    public class ErrorHandlingMiddleware
+    public class ErrorHandlingMiddleware : INavyBlueMiddleware
     {
         private readonly RequestDelegate next;
 
@@ -15,7 +15,12 @@ namespace NavyBlue.AspNetCore.Web
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context /* other dependencies */)
+        /// <summary>
+        /// Invokes the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public async Task Invoke(HttpContext context)
         {
             try
             {

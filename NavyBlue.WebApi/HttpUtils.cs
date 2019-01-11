@@ -24,6 +24,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Primitives;
 
 namespace NavyBlue.AspNetCore.Web
 {
@@ -242,7 +243,7 @@ namespace NavyBlue.AspNetCore.Web
         /// <returns>The querystring value. Return null if the querystring does not exist.</returns>
         /// <exception cref="System.ArgumentNullException">If the request is null, throw the ArgumentNullException.</exception>
         /// <exception cref="System.ArgumentNullException">If the key is null, throw the ArgumentNullException.</exception>
-        public static string GetQueryStringValue(this HttpRequestMessage request, string key)
+        public static string GetQueryStringValue(this HttpRequest request, string key)
         {
             if (request == null)
             {
@@ -255,12 +256,12 @@ namespace NavyBlue.AspNetCore.Web
             }
 
             // IEnumerable<KeyValuePair<string,string>> - right!
-            IEnumerable<KeyValuePair<string, string>> queryStrings = request.GetQueryStrings();
+            IQueryCollection queryStrings = request.Query;
             if (queryStrings == null)
                 return null;
 
-            KeyValuePair<string, string> match = queryStrings.FirstOrDefault(kv => string.Compare(kv.Key, key, StringComparison.OrdinalIgnoreCase) == 0);
-            return string.IsNullOrEmpty(match.Value) ? null : match.Value;
+            KeyValuePair<string, StringValues> match = queryStrings.FirstOrDefault(kv => string.Compare(kv.Key, key, StringComparison.OrdinalIgnoreCase) == 0);
+            return string.IsNullOrEmpty(match.Value) ? StringValues.Empty : match.Value;
         }
 
         /// <summary>

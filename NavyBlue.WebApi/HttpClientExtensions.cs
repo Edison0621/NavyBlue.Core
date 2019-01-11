@@ -21,17 +21,18 @@ namespace NavyBlue.AspNetCore.Web
 {
     public static class HttpClientExtensions
     {
-        public static Task<HttpResponseMessage> PostAsJsonAsync<T>(
-            this HttpClient httpClient, string url, T data)
+        public static Task<HttpResponseMessage> PostAsJsonAsync<T>(this HttpClient httpClient, string url, T data)
         {
-            var content = new StringContent(data.ToJson());
+            StringContent content = new StringContent(data.ToJson());
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
             return httpClient.PostAsync(url, content);
         }
 
         public static async Task<T> ReadAsJsonAsync<T>(this HttpContent content)
         {
             var dataAsString = await content.ReadAsStringAsync();
+
             return dataAsString.FromJson<T>();
         }
     }

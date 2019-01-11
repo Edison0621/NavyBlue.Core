@@ -13,6 +13,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace NavyBlue.AspNetCore.Web
 {
@@ -55,7 +56,7 @@ namespace NavyBlue.AspNetCore.Web
         /// <returns>The querystring value. Return null if the querystring does not exist.</returns>
         /// <exception cref="System.ArgumentNullException">If the request is null, throw the ArgumentNullException.</exception>
         /// <exception cref="System.ArgumentNullException">If the key is null, throw the ArgumentNullException.</exception>
-        public static string GetQueryString(this HttpRequestMessage request, string key)
+        public static string GetQueryString(this HttpRequest request, string key)
         {
             return HttpUtils.GetQueryStringValue(request, key);
         }
