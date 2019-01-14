@@ -1,33 +1,37 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
-// File             : JsonRequestMessage.cs
-// Created          : 2019-01-14  17:14
+// File             : LogManager.cs
+// Created          : 2019-01-14  17:08
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-14  17:25
+// Last Modified On : 2019-01-14  17:12
 // *****************************************************************************************************************
-// <copyright file="JsonRequestMessage.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+// <copyright file="LogManager.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
 
-namespace NavyBlue.AspNetCore.Web
+namespace NavyBlue.NetCore.Lib.Loggers
 {
     /// <summary>
-    ///     Class JsonRequestMessage.
+    ///     LogManager.
     /// </summary>
-    public class JsonRequestMessage
+    public class LogManager
     {
         /// <summary>
-        ///     Gets or sets the method.
+        ///     Initializes a new instance of the <see cref="LogManager" /> class.
         /// </summary>
-        /// <value>The method.</value>
-        public string Method { get; set; }
+        internal LogManager()
+        {
+        }
 
         /// <summary>
-        ///     Gets or sets the relative URL.
+        ///     Creates the logger.
         /// </summary>
-        /// <value>The relative URL.</value>
-        public string RelativeUrl { get; set; }
+        /// <returns>ILogger.</returns>
+        public ILogger CreateLogger()
+        {
+            return App.IsInAzureCloud ? (ILogger)new WADLogger() : new NLogger();
+        }
     }
 }

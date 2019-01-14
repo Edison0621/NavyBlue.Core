@@ -1,12 +1,12 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
-// File             : EnumAvailableValuesAttribute.cs
+// File             : AvailableValuesAttribute.cs
 // Created          : 2019-01-14  17:14
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-14  17:24
+// Last Modified On : 2019-01-14  17:23
 // *****************************************************************************************************************
-// <copyright file="EnumAvailableValuesAttribute.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+// <copyright file="AvailableValuesAttribute.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
@@ -15,22 +15,25 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 
-namespace NavyBlue.AspNetCore.Web
+namespace NavyBlue.AspNetCore.Web.Filters
 {
     /// <summary>
-    ///     Class AvailableValuesAttribute.
+    ///     Determines whether the specified value of the object is valid.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property)]
-    public class EnumAvailableValuesAttribute : ValidationAttribute
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
+    public class AvailableValuesAttribute : ValidationAttribute
     {
+        private readonly string[] availableValues;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="AvailableValuesAttribute" /> class.
         /// </summary>
-        public EnumAvailableValuesAttribute()
+        /// <param name="values">The values.</param>
+        public AvailableValuesAttribute(params object[] values)
             : base(@"The {0} value is not available.")
         {
+            this.availableValues = values.Select(v => v.ToString()).ToArray();
         }
 
         /// <summary>
@@ -46,26 +49,15 @@ namespace NavyBlue.AspNetCore.Web
         }
 
         /// <summary>
-        ///     Validates the specified value with respect to the current validation attribute.
+        ///     Determines whether the specified value of the object is valid.
         /// </summary>
         /// <returns>
-        ///     An instance of the <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult" /> class.
+        ///     true if the specified value is valid; otherwise, false.
         /// </returns>
-        /// <param name="value">The value to validate.</param>
-        /// <param name="validationContext">The context information about the validation operation.</param>
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        /// <param name="value">The value of the object to validate. </param>
+        public override bool IsValid(object value)
         {
-            PropertyInfo validatingProperty = validationContext.ObjectType.GetProperty(validationContext.MemberName);
-            if (validatingProperty.PropertyType.IsEnum)
-            {
-                Array availableValues = validatingProperty.PropertyType.GetEnumValues();
-                if (availableValues.Cast<object>().Any(availableValue => Convert.ToInt32(availableValue) == Convert.ToInt32(value)))
-                {
-                    return ValidationResult.Success;
-                }
-            }
-
-            return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
+            return value != null && this.availableValues.Contains(value.ToString());
         }
     }
 }

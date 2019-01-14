@@ -1,18 +1,19 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
 // File             : IPAuthorizeAttribute.cs
-// Created          : 2019-01-09  20:14
+// Created          : 2019-01-14  17:14
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  15:01
+// Last Modified On : 2019-01-14  17:23
 // *****************************************************************************************************************
 // <copyright file="IPAuthorizeAttribute.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
 
-using Microsoft.AspNetCore.Mvc.Filters;
 using System;
+using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 
 namespace NavyBlue.AspNetCore.Web.Filters
@@ -33,7 +34,7 @@ namespace NavyBlue.AspNetCore.Web.Filters
         ///     Calls when a process requests authorization.
         /// </summary>
         /// <param name="actionContext">The action context, which encapsulates information for using <see cref="T:System.Web.Http.Filters.AuthorizationFilterAttribute" />.</param>
-        public override void OnAuthorization(AuthorizationFilterContext actionContext)
+        public override void OnAuthorization(HttpActionContext actionContext)
         {
             if (!this.IpIsAuthorized(actionContext))
             {
@@ -50,14 +51,14 @@ namespace NavyBlue.AspNetCore.Web.Filters
         /// </summary>
         /// <param name="actionContext">The context.</param>
         /// <exception cref="System.ArgumentNullException">@actionContext can not be null</exception>
-        private void HandleUnauthorizedRequest(AuthorizationFilterContext actionContext)
+        private void HandleUnauthorizedRequest(HttpActionContext actionContext)
         {
             if (actionContext == null)
             {
                 throw new ArgumentNullException(nameof(actionContext), @"actionContext can not be null");
             }
 
-            //TODO actionContext.Response = actionContext.ControllerContext.Request.CreateErrorResponse(HttpStatusCode.Forbidden, "");
+            actionContext.Response = actionContext.ControllerContext.Request.CreateErrorResponse(HttpStatusCode.Forbidden, "");
         }
 
         /// <summary>
@@ -65,9 +66,10 @@ namespace NavyBlue.AspNetCore.Web.Filters
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        private bool IpIsAuthorized(AuthorizationFilterContext context)
+        private bool IpIsAuthorized(HttpActionContext context)
         {
-            string ip = HttpUtils.GetUserHostAddress(context.HttpContext);
+            HttpRequestMessage request = context.Request;
+            string ip = HttpUtils.GetUserHostAddress(request);
 
             if (string.IsNullOrEmpty(ip))
             {
@@ -76,10 +78,10 @@ namespace NavyBlue.AspNetCore.Web.Filters
 
             if (this.ValiadIPRegex == null)
             {
-                return ip == "::1";
+                return request.IsLocal() || ip == "::1";
             }
 
-            return this.ValiadIPRegex.IsMatch(ip) || ip == "::1";
+            return this.ValiadIPRegex.IsMatch(ip) || request.IsLocal() || ip == "::1";
         }
     }
 }

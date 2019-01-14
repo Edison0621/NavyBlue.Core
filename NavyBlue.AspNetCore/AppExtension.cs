@@ -1,30 +1,31 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
-// File             : BaseApiController.cs
-// Created          : 2019-01-14  17:14
+// File             : AppExtension.cs
+// Created          : 2019-01-14  17:08
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-14  17:24
+// Last Modified On : 2019-01-14  17:12
 // *****************************************************************************************************************
-// <copyright file="BaseApiController.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+// <copyright file="AppExtension.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
 
-namespace NavyBlue.AspNetCore.Web
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
-    ///     BaseApiController.
+    ///     AppAzureExtension.
     /// </summary>
-    public abstract class BaseApiController : ApiController
+    public static class AppExtension
     {
         /// <summary>
-        ///     Gets the logger.
+        ///     Initializes the configuration.
         /// </summary>
-        /// <value>The logger.</value>
-        public ITraceWriter Logger
+        /// <param name="app">The application.</param>
+        /// <returns></returns>
+        public static App InitConfig(this App app)
         {
-            get { return this.Configuration.Services.GetTraceWriter(); }
+            return app.Config(new AppConfigProvider());
         }
     }
 }
