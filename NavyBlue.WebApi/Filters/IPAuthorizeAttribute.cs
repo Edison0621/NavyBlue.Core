@@ -15,6 +15,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace NavyBlue.AspNetCore.Web.Filters
 {
@@ -34,7 +35,7 @@ namespace NavyBlue.AspNetCore.Web.Filters
         ///     Calls when a process requests authorization.
         /// </summary>
         /// <param name="actionContext">The action context, which encapsulates information for using <see cref="T:System.Web.Http.Filters.AuthorizationFilterAttribute" />.</param>
-        public override void OnAuthorization(HttpActionContext actionContext)
+        public override void OnAuthorization(AuthorizationFilterContext actionContext)
         {
             if (!this.IpIsAuthorized(actionContext))
             {
@@ -51,7 +52,7 @@ namespace NavyBlue.AspNetCore.Web.Filters
         /// </summary>
         /// <param name="actionContext">The context.</param>
         /// <exception cref="System.ArgumentNullException">@actionContext can not be null</exception>
-        private void HandleUnauthorizedRequest(HttpActionContext actionContext)
+        private void HandleUnauthorizedRequest(AuthorizationFilterContext actionContext)
         {
             if (actionContext == null)
             {
@@ -66,7 +67,7 @@ namespace NavyBlue.AspNetCore.Web.Filters
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        private bool IpIsAuthorized(HttpActionContext context)
+        private bool IpIsAuthorized(AuthorizationFilterContext context)
         {
             HttpRequestMessage request = context.Request;
             string ip = HttpUtils.GetUserHostAddress(request);

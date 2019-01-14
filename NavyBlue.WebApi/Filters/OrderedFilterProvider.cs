@@ -11,6 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,6 +22,8 @@ namespace NavyBlue.AspNetCore.Web.Filters
     /// </summary>
     public class OrderedFilterProvider : IFilterProvider
     {
+        public int Order => throw new System.NotImplementedException();
+
         /// <summary>
         ///     Gets the filters.
         /// </summary>
@@ -49,6 +52,16 @@ namespace NavyBlue.AspNetCore.Web.Filters
             return filters.OfType<IOrderedFilter>()
                 .OrderBy(filter => filter.Order)
                 .Select(instance => new FilterInfo(instance, scope));
+        }
+
+        public void OnProvidersExecuting(FilterProviderContext context)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnProvidersExecuted(FilterProviderContext context)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

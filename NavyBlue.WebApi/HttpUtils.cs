@@ -11,6 +11,9 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Http;
+using NavyBlue.NetCore.Lib;
+using ReflectionMagic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -117,7 +120,7 @@ namespace NavyBlue.AspNetCore.Web
             {
                 TextWriter writer = new StreamWriter(memoryStream);
 
-                writer.Write(httpRequest.HttpMethod);
+                writer.Write(httpRequest.Method);
                 writer.Write(httpRequest.Url.AbsoluteUri);
 
                 // headers

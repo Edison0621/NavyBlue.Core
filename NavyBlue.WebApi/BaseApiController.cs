@@ -11,12 +11,15 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
+
 namespace NavyBlue.AspNetCore.Web
 {
     /// <summary>
     ///     BaseApiController.
     /// </summary>
-    public abstract class BaseApiController : ApiController
+    public abstract class BaseApiController : Controller
     {
         /// <summary>
         ///     Gets the logger.

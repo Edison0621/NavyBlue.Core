@@ -14,6 +14,7 @@
 using NavyBlue.AspNetCore.Web.Diagnostics;
 using NavyBlue.AspNetCore.Web.Handlers;
 using NavyBlue.AspNetCore.Web.Handlers.Client;
+using NavyBlue.NetCore.Lib;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -50,6 +51,7 @@ namespace NavyBlue.AspNetCore.Web
                 AllowAutoRedirect = true,
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
             }, delegatingHandlers.ToArray());
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml", 0.5));
