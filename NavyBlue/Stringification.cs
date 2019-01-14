@@ -16,7 +16,7 @@ using System;
 using System.Collections;
 using System.Linq;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     A helper class with extension methods for converting an object to a string representation.

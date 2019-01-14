@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Extension methods for <see cref="System.Collections.Generic.IDictionary{TKey, TValue}" />

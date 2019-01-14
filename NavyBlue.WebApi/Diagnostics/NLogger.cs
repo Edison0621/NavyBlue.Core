@@ -12,7 +12,7 @@
 // *****************************************************************************************************************
 
 using MoeLib.Diagnostics;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;

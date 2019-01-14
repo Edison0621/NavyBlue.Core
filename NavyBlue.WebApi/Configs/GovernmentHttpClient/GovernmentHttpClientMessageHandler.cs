@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using System;
 using System.Configuration;
 using System.Net.Http;

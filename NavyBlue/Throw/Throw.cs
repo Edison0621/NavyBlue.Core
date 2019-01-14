@@ -14,7 +14,7 @@
 using System;
 using System.Collections;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     All throw logic is factored out of the public extension methods and put in this helper class. This

@@ -14,7 +14,7 @@
 using System;
 using System.Linq;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Utilities for working with <see cref="System.Guid" /> type.

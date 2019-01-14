@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

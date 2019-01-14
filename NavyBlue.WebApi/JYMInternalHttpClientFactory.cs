@@ -16,7 +16,7 @@ using NavyBlue.AspNetCore.Web.Auth;
 using NavyBlue.AspNetCore.Web.Diagnostics;
 using NavyBlue.AspNetCore.Web.Handlers;
 using NavyBlue.AspNetCore.Web.Handlers.Client;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using System;
 using System.Collections.Generic;
 using System.Net;

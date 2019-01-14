@@ -17,7 +17,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     // Come from FluentSharp
     // Code based on example from: Password Minder Internals http://msdn.microsoft.com/en-us/magazine/cc163913.aspx

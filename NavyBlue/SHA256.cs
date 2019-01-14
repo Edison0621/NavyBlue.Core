@@ -15,7 +15,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Class Sha256Utility.

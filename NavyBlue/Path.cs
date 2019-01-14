@@ -13,7 +13,7 @@
 
 using System;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Utilities methods for working with resource paths

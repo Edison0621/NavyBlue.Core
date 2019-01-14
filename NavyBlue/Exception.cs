@@ -16,7 +16,7 @@ using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Text;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Extensions of <see cref="System.Exception" /> type.

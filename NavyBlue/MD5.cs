@@ -15,7 +15,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     MD5Hash.

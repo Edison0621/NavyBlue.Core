@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NavyBlue\NavyBlue.Lib.csproj" />
+    <ProjectReference Include="..\NavyBlue\NavyBlue.NetCore.Lib.csproj" />
   </ItemGroup>
 
 </Project>

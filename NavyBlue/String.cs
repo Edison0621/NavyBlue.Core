@@ -22,7 +22,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Extensions for <see cref="System.String" />.

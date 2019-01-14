@@ -14,7 +14,7 @@
 using System.Globalization;
 using System.Resources;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Exception Message String Resource helper class

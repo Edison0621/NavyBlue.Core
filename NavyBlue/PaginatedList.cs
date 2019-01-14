@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Interface IPaginatedList

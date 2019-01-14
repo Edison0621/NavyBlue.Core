@@ -16,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Extensions of <see cref="System.Type" /> types.

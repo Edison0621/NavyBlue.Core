@@ -14,7 +14,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Net.Http.Headers;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using ReflectionMagic;
 using System;
 using System.Collections.Generic;

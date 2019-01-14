@@ -12,7 +12,7 @@
 // *****************************************************************************************************************
 
 using MoeLib.Diagnostics;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using System.Net.Http;
 
 namespace NavyBlue.AspNetCore.Web.Diagnostics

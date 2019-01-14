@@ -13,7 +13,7 @@
 
 using System;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Extensions of <see cref="object" />.

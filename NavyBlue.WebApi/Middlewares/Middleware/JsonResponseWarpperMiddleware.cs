@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using Newtonsoft.Json.Linq;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware

@@ -13,7 +13,7 @@
 
 using MoeLib.Diagnostics;
 using NavyBlue.AspNetCore.Web.Diagnostics;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using System;
 using System.Net.Http;
 using System.Threading;

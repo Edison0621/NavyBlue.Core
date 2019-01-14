@@ -2,7 +2,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {

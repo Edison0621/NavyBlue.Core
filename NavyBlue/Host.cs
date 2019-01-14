@@ -16,7 +16,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     public static class HostServer
     {

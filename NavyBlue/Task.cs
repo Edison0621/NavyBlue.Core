@@ -14,7 +14,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     TaskEx.

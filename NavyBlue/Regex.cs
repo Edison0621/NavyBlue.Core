@@ -13,7 +13,7 @@
 
 using System.Text.RegularExpressions;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     RegexUtility.

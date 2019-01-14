@@ -13,7 +13,7 @@
 
 using Microsoft.AspNetCore.Http;
 using NavyBlue.AspNetCore.Web.Auth;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

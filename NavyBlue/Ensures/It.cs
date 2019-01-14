@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Use <see cref="It" /> class to construct <see cref="Ensures{T}" /> instance.

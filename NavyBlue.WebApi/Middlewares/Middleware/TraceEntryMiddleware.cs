@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Microsoft.Net.Http.Headers;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using Microsoft.Extensions.Primitives;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware

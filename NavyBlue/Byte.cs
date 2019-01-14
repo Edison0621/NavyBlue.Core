@@ -14,7 +14,7 @@
 using System;
 using System.Text;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Extensions of <see cref="System.Byte" /> types.

@@ -19,7 +19,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Utilities for working with Encode/Decode tasks.

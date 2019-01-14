@@ -14,7 +14,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     A <see cref="Ensures{T}" /> is used to ensure the predicate is true.

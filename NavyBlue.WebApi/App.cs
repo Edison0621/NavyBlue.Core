@@ -13,7 +13,7 @@
 
 using NavyBlue.AspNetCore.Web.Configs;
 using NavyBlue.AspNetCore.Web.Diagnostics;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using System;
 using System.Configuration;
 

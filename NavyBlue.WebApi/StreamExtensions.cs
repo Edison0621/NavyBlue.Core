@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 
 namespace NavyBlue.AspNetCore.Web
 {

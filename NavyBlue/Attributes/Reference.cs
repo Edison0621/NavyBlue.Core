@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     [AttributeUsage(AttributeTargets.All)]
     public sealed class ReferenceAttribute : Attribute, IEquatable<ReferenceAttribute>
@@ -44,7 +44,7 @@ namespace NavyBlue.Lib
         }
 
         /// <summary>
-        ///     Returns whether the value of the given object is equal to the current <see cref="T:NavyBlue.Lib.Attributes.ReferenceAttribute" />.
+        ///     Returns whether the value of the given object is equal to the current <see cref="T:NavyBlue.NetCore.Lib.Attributes.ReferenceAttribute" />.
         /// </summary>
         /// <returns>
         ///     true if the value of the given object is equal to that of the current; otherwise, false.

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavyBlue.Lib", "NavyBlue\NavyBlue.Lib.csproj", "{E0D382B8-DEEB-43C2-839F-323CF1E33B5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavyBlue.NetCore.Lib", "NavyBlue\NavyBlue.NetCore.Lib.csproj", "{E0D382B8-DEEB-43C2-839F-323CF1E33B5B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavyBlue.AspNetCore.Web", "NavyBlue.WebApi\NavyBlue.AspNetCore.Web.csproj", "{1A42A123-BB6E-4DEB-9729-354FAF747590}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavyBlue.Demo.API", "NavyBlue.Demo.API\NavyBlue.Demo.API.csproj", "{437CFF8B-1106-4A85-92D9-6FB7B41F76E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavyBlue.Demo.API", "NavyBlue.Demo.API\NavyBlue.Demo.API.csproj", "{437CFF8B-1106-4A85-92D9-6FB7B41F76E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

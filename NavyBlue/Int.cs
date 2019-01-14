@@ -14,7 +14,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Interface ILoopIterator

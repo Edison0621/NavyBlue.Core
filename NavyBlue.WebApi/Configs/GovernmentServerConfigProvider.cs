@@ -12,7 +12,7 @@
 // *****************************************************************************************************************
 
 using NavyBlue.AspNetCore.Web.Configs.GovernmentHttpClient;
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using System;
 using System.Configuration;
 using System.Net;

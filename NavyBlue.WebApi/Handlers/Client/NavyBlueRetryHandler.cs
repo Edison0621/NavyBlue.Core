@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using NavyBlue.Lib;
+using NavyBlue.NetCore.Lib;
 using Polly;
 using Polly.Retry;
 using System;

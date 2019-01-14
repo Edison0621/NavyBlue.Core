@@ -15,7 +15,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace NavyBlue.Lib
+namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
     ///     Extensions of <see cref="System.Enum" /> types.
