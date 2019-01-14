@@ -15,7 +15,9 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Net.Http.Headers;
 
 namespace NavyBlue.AspNetCore.Web.Filters
 {
@@ -59,7 +61,9 @@ namespace NavyBlue.AspNetCore.Web.Filters
                 throw new ArgumentNullException(nameof(actionContext), @"actionContext can not be null");
             }
 
-            actionContext.Response = actionContext.ControllerContext.Request.CreateErrorResponse(HttpStatusCode.Forbidden, "");
+            //actionContext.Response = actionContext.ControllerContext.Request.CreateErrorResponse(HttpStatusCode.Forbidden, "");
+
+            actionContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
         }
 
         /// <summary>
@@ -69,8 +73,8 @@ namespace NavyBlue.AspNetCore.Web.Filters
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool IpIsAuthorized(AuthorizationFilterContext context)
         {
-            HttpRequestMessage request = context.Request;
-            string ip = HttpUtils.GetUserHostAddress(request);
+            HttpRequest request = context.HttpContext.Request;
+            string ip = HttpUtils.GetUserHostAddress(request.HttpContext);
 
             if (string.IsNullOrEmpty(ip))
             {
@@ -79,10 +83,10 @@ namespace NavyBlue.AspNetCore.Web.Filters
 
             if (this.ValiadIPRegex == null)
             {
-                return request.IsLocal() || ip == "::1";
+                return ip == "::1";
             }
 
-            return this.ValiadIPRegex.IsMatch(ip) || request.IsLocal() || ip == "::1";
+            return this.ValiadIPRegex.IsMatch(ip) || ip == "::1";
         }
     }
 }

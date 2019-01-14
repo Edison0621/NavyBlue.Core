@@ -11,9 +11,8 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Http;
 using NavyBlue.AspNetCore.Web.Diagnostics;
-using NavyBlue.AspNetCore.Web.Handlers;
-using NavyBlue.AspNetCore.Web.Handlers.Client;
 using NavyBlue.NetCore.Lib;
 using System;
 using System.Collections.Generic;
@@ -37,20 +36,27 @@ namespace NavyBlue.AspNetCore.Web
         /// <returns>A new instance of the <see cref="T:System.Net.Http.HttpClient" />.</returns>
         public static HttpClient Create(string serviceName, TraceEntry traceEntry, params DelegatingHandler[] handlers)
         {
-            List<DelegatingHandler> delegatingHandlers = new List<DelegatingHandler>
-            {
-                new NBTraceEntryHandler(traceEntry),
-                new NBHttpStatusHandler(),
-                new NBLogHandler("HTTP Client Request", "HTTP Client Response"),
-                new NBRetryHandler()
-            };
-            delegatingHandlers.AddRange(handlers);
+            //List<DelegatingHandler> delegatingHandlers = new List<DelegatingHandler>
+            //{
+            //    new NBTraceEntryHandler(traceEntry),
+            //    new NBHttpStatusHandler(),
+            //    new NBLogHandler("HTTP Client Request", "HTTP Client Response"),
+            //    new NBRetryHandler()
+            //};
+            //delegatingHandlers.AddRange(handlers);
 
-            HttpClient client = HttpClientFactory.Create(new HttpClientHandler
+            //HttpClient client = HttpClientFactory.Create(new HttpClientHandler
+            //{
+            //    AllowAutoRedirect = true,
+            //    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            //}, delegatingHandlers.ToArray());
+
+
+            HttpClient client = new HttpClient(new HttpClientHandler
             {
                 AllowAutoRedirect = true,
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            }, delegatingHandlers.ToArray());
+            });
 
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));
@@ -101,7 +107,7 @@ namespace NavyBlue.AspNetCore.Web
         /// <param name="request">The request.</param>
         /// <param name="handlers">The list of HTTP handler that delegates the processing of HTTP response messages to another handler.</param>
         /// <returns>A new instance of the <see cref="T:System.Net.Http.HttpClient" />.</returns>
-        public static HttpClient Create(string serviceName, HttpRequestMessage request, params DelegatingHandler[] handlers)
+        public static HttpClient Create(string serviceName, HttpRequest request, params DelegatingHandler[] handlers)
         {
             return Create(serviceName, request, "", handlers);
         }
@@ -114,7 +120,7 @@ namespace NavyBlue.AspNetCore.Web
         /// <param name="userId">The user identifier.</param>
         /// <param name="handlers">The list of HTTP handler that delegates the processing of HTTP response messages to another handler.</param>
         /// <returns>A new instance of the <see cref="T:System.Net.Http.HttpClient" />.</returns>
-        public static HttpClient Create(string serviceName, HttpRequestMessage request, string userId, params DelegatingHandler[] handlers)
+        public static HttpClient Create(string serviceName, HttpRequest request, string userId, params DelegatingHandler[] handlers)
         {
             return Create(serviceName, request.GetTraceEntry(), userId, handlers);
         }

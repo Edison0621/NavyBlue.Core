@@ -11,9 +11,11 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Http;
 using NavyBlue.AspNetCore.Web.Extensions;
 using NavyBlue.NetCore.Lib;
 using System.Net.Http;
+using Microsoft.Net.Http.Headers;
 
 namespace NavyBlue.AspNetCore.Web.Diagnostics
 {
@@ -27,7 +29,7 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>MoeLib.Diagnostics.TraceEntry.</returns>
-        public static TraceEntry GetTraceEntry(this HttpRequestMessage request)
+        public static TraceEntry GetTraceEntry(this HttpRequest request)
         {
             return request.To(r => new TraceEntry
             {
@@ -35,8 +37,8 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
                 DeviceId = request?.GetHeader("X-NB-DID"),
                 RequestId = request?.GetHeader("X-NB-RID"),
                 SessionId = request?.GetHeader("X-NB-SID"),
-                SourceIP = request?.GetHeader("X-NB-IP") ?? request?.GetUserHostAddress(),
-                SourceUserAgent = request?.GetHeader("X-NB-UA") ?? request?.GetUserAgent(),
+                SourceIP = request?.GetHeader("X-NB-IP") ?? request?.GetHeader(HeaderNames.Host),
+                SourceUserAgent = request?.GetHeader("X-NB-UA") ?? request?.GetHeader(HeaderNames.UserAgent),
                 UserId = request?.GetHeader("X-NB-UID")
             });
         }

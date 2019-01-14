@@ -11,6 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Authorization;
 using System;
 
 namespace NavyBlue.AspNetCore.Web.Filters

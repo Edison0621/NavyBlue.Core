@@ -44,7 +44,6 @@ namespace NavyBlue.Demo.API.Controllers
 
         // POST api/values
         [HttpPost]
-        [ActionParameterValidate]
         public IActionResult Post(UserInfo userInfo)
         {
             return this.Ok(new { UserName = "edison",Age = 30 });

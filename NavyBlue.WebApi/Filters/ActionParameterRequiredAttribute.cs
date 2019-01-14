@@ -13,6 +13,8 @@
 
 using System;
 using System.Net;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace NavyBlue.AspNetCore.Web.Filters
 {
@@ -42,7 +44,7 @@ namespace NavyBlue.AspNetCore.Web.Filters
         ///     Occurs before the action method is invoked.
         /// </summary>
         /// <param name="actionContext">The action context.</param>
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
             object parameterValue;
             if (actionContext.ActionArguments.TryGetValue(this.ActionParameterName, out parameterValue))
@@ -51,7 +53,9 @@ namespace NavyBlue.AspNetCore.Web.Filters
                 {
                     string errorMessage = this.FormatErrorMessage();
                     actionContext.ModelState.AddModelError(this.ActionParameterName, errorMessage);
-                    actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+                    //actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+                    actionContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    //TODO actionContext.HttpContext.Response.WriteAsync(errorMessage);
                 }
             }
         }

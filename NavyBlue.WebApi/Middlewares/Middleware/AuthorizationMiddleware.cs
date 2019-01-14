@@ -12,7 +12,6 @@
 // *****************************************************************************************************************
 
 using Microsoft.AspNetCore.Http;
-using NavyBlue.AspNetCore.Web.Auth;
 using NavyBlue.NetCore.Lib;
 using Newtonsoft.Json.Linq;
 using System;
@@ -20,15 +19,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
-using NavyBlue.AspNetCore.Web;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {

@@ -12,6 +12,7 @@
 // *****************************************************************************************************************
 
 using NavyBlue.AspNetCore.Web.Extensions;
+using NavyBlue.NetCore.Lib;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,6 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
 
         static NBAuthorizationHandler()
         {
-            UseSwaggerAsApplicationForDev = CloudConfigurationManager.GetSetting("UseSwaggerAsApplicationForDev").AsBoolean(false);
         }
 
         /// <summary>
@@ -96,8 +96,8 @@ namespace NavyBlue.AspNetCore.Web.Handlers.Server
 
         private ClaimsIdentity Identity
         {
-            get { return HttpContext.Current.User?.Identity as ClaimsIdentity; }
-            set { HttpContext.Current.User = new ClaimsPrincipal(value); }
+            get { return NBHttpContext.Current.User?.Identity as ClaimsIdentity; }
+            set { NBHttpContext.Current.User = new ClaimsPrincipal(value); }
         }
 
         private List<string> IPWhitelists

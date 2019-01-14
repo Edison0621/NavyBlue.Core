@@ -177,11 +177,6 @@ namespace NavyBlue.NetCore.Lib
         /// <returns>App.</returns>
         public App UseConfigManager(IConfigProvider configProvider, IConfigProvider configProviderForDev = null)
         {
-            if (ConfigurationManager.AppSettings.Get("UseConfigProviderForDev").AsBoolean(false) && configProviderForDev != null)
-            {
-                app.configurations = new ConfigManager(configProviderForDev);
-            }
-
             app.configurations = new ConfigManager(configProvider);
 
             return app;
@@ -191,11 +186,11 @@ namespace NavyBlue.NetCore.Lib
         ///     Uses the government server configuration manager.
         /// </summary>
         /// <typeparam name="TConfig">The type of the configuration.</typeparam>
-        /// <param name="configProviderForDev">The configuration provider for dev.</param>
+        /// <param name="configProvider">The configuration provider.</param>
         /// <returns>App.</returns>
-        public App UseGovernmentServerConfigManager<TConfig>(IConfigProvider configProviderForDev = null) where TConfig : class, IConfig
+        public App UseGovernmentServerConfigManager<TConfig>(IConfigProvider configProvider = null) where TConfig : class, IConfig
         {
-            return this.UseConfigManager(new GovernmentServerConfigProvider<TConfig>(), configProviderForDev);
+            return this.UseConfigManager(new GovernmentServerConfigProvider<TConfig>(), configProvider);
         }
 
         /// <summary>

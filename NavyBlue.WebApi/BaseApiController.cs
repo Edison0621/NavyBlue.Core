@@ -12,6 +12,7 @@
 // *****************************************************************************************************************
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 
 namespace NavyBlue.AspNetCore.Web
@@ -27,7 +28,7 @@ namespace NavyBlue.AspNetCore.Web
         /// <value>The logger.</value>
         public ITraceWriter Logger
         {
-            get { return this.Configuration.Services.GetTraceWriter(); }
+            get { return this.HttpContext.RequestServices.GetService<ITraceWriter>(); }
         }
     }
 }

@@ -60,7 +60,7 @@ namespace NavyBlue.NetCore.Lib.Configs
 
                 return Task.Run(async () =>
                 {
-                    HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync("/api/Configurations", request);
+                    HttpResponseMessage response = await this.HttpClient.PostAsync("/api/Configurations", new StringContent(request.ToJson()));
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -73,7 +73,7 @@ namespace NavyBlue.NetCore.Lib.Configs
             }
             catch (Exception e)
             {
-                throw new ConfigurationErrorsException("Missing config of \"Configurations\"", e);
+                throw new Exception("Missing config of \"Configurations\"", e);
             }
         }
 
@@ -81,30 +81,37 @@ namespace NavyBlue.NetCore.Lib.Configs
 
         private static Uri GetGovernmentBaseUri()
         {
-            try
-            {
-                string specifiedGovernmentBaseUri = ConfigurationManager.AppSettings.Get("GovernmentBaseUri");
-                if (specifiedGovernmentBaseUri.IsNotNullOrEmpty() && RegexUtility.UrlRegex.IsMatch(specifiedGovernmentBaseUri))
-                {
-                    Uri governmentBaseUri = new Uri(specifiedGovernmentBaseUri);
-                    return governmentBaseUri;
-                }
-            }
-            catch
-            {
-                // ignored
-            }
+            //try
+            //{
+            //    string specifiedGovernmentBaseUri = ConfigurationManager.AppSettings.Get("GovernmentBaseUri");
+            //    if (specifiedGovernmentBaseUri.IsNotNullOrEmpty() && RegexUtility.UrlRegex.IsMatch(specifiedGovernmentBaseUri))
+            //    {
+            //        Uri governmentBaseUri = new Uri(specifiedGovernmentBaseUri);
+            //        return governmentBaseUri;
+            //    }
+            //}
+            //catch
+            //{
+            //    // ignored
+            //}
 
             return new Uri("http://localhost:6753/");
         }
 
         private static HttpClient InitHttpClient()
         {
-            HttpClient client = HttpClientFactory.Create(new HttpClientHandler
+            //HttpClient client = HttpClientFactory.Create(new HttpClientHandler
+            //{
+            //    AllowAutoRedirect = true,
+            //    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            //}, new GovernmentHttpClientMessageHandler());
+
+            HttpClient client = new HttpClient(new HttpClientHandler
             {
                 AllowAutoRedirect = true,
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            }, new GovernmentHttpClientMessageHandler());
+            });
+
             client.BaseAddress = GetGovernmentBaseUri();
             client.Timeout = 1.Minutes();
             return client;

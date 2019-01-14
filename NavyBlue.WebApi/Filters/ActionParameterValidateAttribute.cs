@@ -11,11 +11,14 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using NavyBlue.NetCore.Lib;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace NavyBlue.AspNetCore.Web.Filters
 {
@@ -29,13 +32,13 @@ namespace NavyBlue.AspNetCore.Web.Filters
         ///     Occurs before the action method is invoked.
         /// </summary>
         /// <param name="actionContext">The action context.</param>
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnActionExecuting(ActionExecutingContext actionContext)
         {
             if (!actionContext.ModelState.IsValid)
             {
                 StringBuilder errors = new StringBuilder();
 
-                foreach (KeyValuePair<string, ModelState> keyValuePair in actionContext.ModelState)
+                foreach (KeyValuePair<string, ModelStateEntry> keyValuePair in actionContext.ModelState)
                 {
                     foreach (ModelError modelError in keyValuePair.Value.Errors)
                     {
@@ -43,11 +46,13 @@ namespace NavyBlue.AspNetCore.Web.Filters
                     }
                 }
 
-                actionContext.Response = new HttpResponseMessage
-                {
-                    Content = new StringContent(new { Message = errors.ToString() }.ToJson()),
-                    StatusCode = HttpStatusCode.BadRequest
-                };
+                //actionContext.Response = new HttpResponseMessage
+                //{
+                //    Content = new StringContent(new { Message = errors.ToString() }.ToJson()),
+                //    StatusCode = HttpStatusCode.BadRequest
+                //};
+
+                actionContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
         }
     }

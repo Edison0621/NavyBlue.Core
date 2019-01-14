@@ -13,6 +13,10 @@
 
 using System;
 using System.Net;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Net.Http.Headers;
+using NavyBlue.NetCore.Lib;
 
 namespace NavyBlue.AspNetCore.Web.Filters
 {
@@ -53,10 +57,11 @@ namespace NavyBlue.AspNetCore.Web.Filters
         ///     Calls when a process requests authorization.
         /// </summary>
         /// <param name="actionContext">The action context, which encapsulates information for using <see cref="T:System.Web.Http.Filters.AuthorizationFilterAttribute" />.</param>
-        public override void OnAuthorization(HttpActionContext actionContext)
+        public override void OnAuthorization(AuthorizationFilterContext actionContext)
         {
             string schemeName = this.SchemeName ?? NBAuthScheme.Bearer;
-            if (actionContext.Request.Headers.Authorization?.Scheme == null || !string.Equals(actionContext.Request.Headers.Authorization.Scheme, schemeName, StringComparison.OrdinalIgnoreCase))
+            if (actionContext.HttpContext.Request.Headers[HeaderNames.Authorization] == StringValues.Empty 
+                || !string.Equals(actionContext.Request.Headers.Authorization.Scheme, schemeName, StringComparison.OrdinalIgnoreCase))
             {
                 actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "");
                 actionContext.Response.Headers.Add("WWW-Authenticate", $"{this.SchemeName} relam=nb.com.cn");

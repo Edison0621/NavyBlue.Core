@@ -11,6 +11,8 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using System;
 using System.Diagnostics;
 using System.Text;
@@ -42,7 +44,7 @@ namespace NavyBlue.AspNetCore.Web.Handlers
 
                 StringBuilder messageBuilder = new StringBuilder();
 
-                messageBuilder.AppendFormat("{0} {1} {2} {3}", httpContext.Request.HttpMethod, httpContext.Request.RawUrl, httpContext.Response.StatusCode, httpContext.Response.Status);
+                messageBuilder.AppendFormat("{0} {1} {2}", httpContext.Request.Method, httpContext.Request.GetEncodedUrl(), httpContext.Response.StatusCode);
                 messageBuilder.Append(Environment.NewLine);
                 messageBuilder.Append(request);
                 messageBuilder.Append(Environment.NewLine);

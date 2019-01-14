@@ -11,6 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Net.Http;
 
@@ -55,7 +56,7 @@ namespace NavyBlue.AspNetCore.Web.Extensions
         /// <returns>The querystring value. Return null if the querystring does not exist.</returns>
         /// <exception cref="System.ArgumentNullException">If the request is null, throw the ArgumentNullException.</exception>
         /// <exception cref="System.ArgumentNullException">If the key is null, throw the ArgumentNullException.</exception>
-        public static string GetQueryString(this HttpRequestMessage request, string key)
+        public static string GetQueryString(this HttpRequest request, string key)
         {
             return request.GetQueryStringValue(key);
         }

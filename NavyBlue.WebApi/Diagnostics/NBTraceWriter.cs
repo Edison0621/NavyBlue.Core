@@ -32,6 +32,8 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
             get { return logger.Value; }
         }
 
+        public TraceLevel LevelFilter => throw new NotImplementedException();
+
         /// <summary>
         ///     The loggers
         /// </summary>
@@ -94,6 +96,11 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
             TraceEntry traceEntry = traceRecord.Request?.GetTraceEntry();
 
             this.Logger.Log(GetLogLevel(traceRecord.Level), traceRecord.Message, traceRecord.Request, "ASP.NET Core Trace", 0UL, string.Empty, traceEntry, traceRecord.Exception);
+        }
+
+        public void Trace(TraceLevel level, string message, Exception ex)
+        {
+            throw new NotImplementedException();
         }
     }
 }
