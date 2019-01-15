@@ -1,10 +1,10 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
 // File             : IOrderedFilter.cs
-// Created          : 2019-01-09  20:20
+// Created          : 2019-01-14  17:14
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  15:03
+// Last Modified On : 2019-01-15  10:54
 // *****************************************************************************************************************
 // <copyright file="IOrderedFilter.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.

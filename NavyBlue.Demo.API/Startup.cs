@@ -4,7 +4,7 @@
 // Created          : 2019-01-10  18:53
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  19:26
+// Last Modified On : 2019-01-15  10:55
 // *****************************************************************************************************************
 // <copyright file="Startup.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
@@ -16,10 +16,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NavyBlue.AspNetCore.Web.Middlewares;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
-using NavyBlue.AspNetCore.Web.Middlewares;
-using NavyBlue.AspNetCore.Web;
 
 namespace NavyBlue.Demo.API
 {

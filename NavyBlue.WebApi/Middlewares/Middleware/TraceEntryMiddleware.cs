@@ -1,28 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// *****************************************************************************************************************
+// Project          : NavyBlue
+// File             : TraceEntryMiddleware.cs
+// Created          : 2019-01-14  17:44
+//
+// Last Modified By : (jstsmaxx@163.com)
+// Last Modified On : 2019-01-15  10:54
+// *****************************************************************************************************************
+// <copyright file="TraceEntryMiddleware.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+//     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
+// </copyright>
+// *****************************************************************************************************************
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
 using NavyBlue.NetCore.Lib;
-using Microsoft.Extensions.Primitives;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {
     public class TraceEntryMiddleware : INavyBlueMiddleware
     {
-        private readonly RequestDelegate _next;
         private readonly ILogger _logger;
+        private readonly RequestDelegate _next;
 
         public TraceEntryMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
-            _next = next;
-            _logger = loggerFactory.CreateLogger<TraceEntryMiddleware>();
+            this._next = next;
+            this._logger = loggerFactory.CreateLogger<TraceEntryMiddleware>();
         }
+
+        private List<string> IPWhitelists
+        {
+            get
+            {
+                return new List<string>();
+                //return App.Configurations.GetIPWhitelists();
+            }
+        }
+
+        #region INavyBlueMiddleware Members
 
         public async Task Invoke(HttpContext context)
         {
-            _logger.LogInformation("Handling API key for: " + context.Request.Path);
+            this._logger.LogInformation("Handling API key for: " + context.Request.Path);
 
             if (!context.Items.ContainsKey("X-NB-CID"))
             {
@@ -73,10 +97,12 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
                 context.Items.Add("X-NB-UID", "Anonymous");
             }
 
-            await _next.Invoke(context);
+            await this._next.Invoke(context);
 
-            _logger.LogInformation("Finished tracing.");
+            this._logger.LogInformation("Finished tracing.");
         }
+
+        #endregion INavyBlueMiddleware Members
 
         private bool IsFromLocalhost(HttpContext context)
         {
@@ -96,15 +122,6 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
         private bool IsFromWhitelists(HttpRequest request)
         {
             return this.IPWhitelists != null && this.IPWhitelists.Contains(request.Headers[HeaderNames.Host]);
-        }
-
-        private List<string> IPWhitelists
-        {
-            get
-            {
-                return new List<string>();
-                //return App.Configurations.GetIPWhitelists();
-            }
         }
     }
 }

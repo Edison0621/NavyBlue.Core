@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Diagnostics\NBExceptionLogger.cs" />
     <Compile Remove="Extensions\HttpConfigurationExtensions.cs" />
     <Compile Remove="Filters\AuthorizationRequiredAttribute.cs" />
     <Compile Remove="HttpConfigurationExtensions.cs" />

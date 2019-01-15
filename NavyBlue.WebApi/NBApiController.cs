@@ -4,15 +4,12 @@
 // Created          : 2019-01-14  17:14
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-14  17:25
+// Last Modified On : 2019-01-15  10:55
 // *****************************************************************************************************************
 // <copyright file="NBApiController.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
-
-using System;
-using System.Diagnostics;
 
 namespace NavyBlue.AspNetCore.Web
 {

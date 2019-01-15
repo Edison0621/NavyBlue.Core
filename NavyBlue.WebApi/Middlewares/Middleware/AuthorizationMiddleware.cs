@@ -1,17 +1,19 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
-// File             : NavyBlueAuthorizationHandler.cs
-// Created          : 2019-01-09  20:14
+// File             : AuthorizationMiddleware.cs
+// Created          : 2019-01-14  17:44
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  15:01
+// Last Modified On : 2019-01-15  10:54
 // *****************************************************************************************************************
-// <copyright file="NavyBlueAuthorizationHandler.cs" company="Shanghai Future Mdt InfoTech Ltd.">
+// <copyright file="AuthorizationMiddleware.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Net.Http.Headers;
 using NavyBlue.NetCore.Lib;
 using Newtonsoft.Json.Linq;
 using System;
@@ -22,8 +24,6 @@ using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Primitives;
-using Microsoft.Net.Http.Headers;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {
@@ -33,18 +33,12 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
     public class AuthorizationMiddleware : INavyBlueMiddleware
     {
         private const string CRYPTO_SERVICE_PROVIDER_ERROR_MESSAGE = "NavyBlueAuthorizationHandler CryptoServiceProvider can not initialize. The GovernmentServerPublicKey may be in bad format. GovernmentServerPublicKey: {0}";
-        private readonly NBAccessTokenProtector accessTokenProtector;
-
         private readonly RequestDelegate _next;
+        private readonly NBAccessTokenProtector accessTokenProtector;
 
         public AuthorizationMiddleware(RequestDelegate next)
         {
-            _next = next;
-        }
-
-        static AuthorizationMiddleware()
-        {
-            //TODO UseSwaggerAsApplicationForDev = CloudConfigurationManager.GetSetting("UseSwaggerAsApplicationForDev").AsBoolean(false);
+            this._next = next;
         }
 
         /// <summary>
@@ -116,6 +110,8 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
             }
         }
 
+        #region INavyBlueMiddleware Members
+
         /// <summary>
         ///     Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.
         /// </summary>
@@ -161,6 +157,8 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
             await this._next.Invoke(context);
         }
 
+        #endregion INavyBlueMiddleware Members
+
         private static bool HasAuthorizationHeader(HttpRequest request, string scheme = "Bearer")
         {
             return request.Headers["X-NB-Authorization"] != StringValues.Empty && request.Headers["X-NB-Authorization"].Contains(scheme);
@@ -204,7 +202,7 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
                 string sign = tokenPiece[4];
                 if (this.CryptoServiceProvider.VerifyData(ticket.GetBytesOfASCII(), new SHA1CryptoServiceProvider(), sign.ToBase64Bytes()))
                 {
-                    if (tokenPiece[3].AsLong(0) > DateTime.UtcNow.UnixTimestamp() && tokenPiece[1] == "")//TODO App.Host.Role)
+                    if (tokenPiece[3].AsLong(0) > DateTime.UtcNow.UnixTimestamp() && tokenPiece[1] == "") //TODO App.Host.Role)
                     {
                         this.Identity = new ClaimsIdentity(new List<Claim>
                         {
@@ -246,14 +244,6 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
                 jObject.Add("expiration", timestamp);
 
                 //context.Response.Body = jObject.ToJson().ToStream(); //request.CreateResponse(response.StatusCode, jObject).Content;
-            }
-            else
-            {
-                //context.Response.Body = new
-                //{
-                //    access_token = this.accessTokenProtector.Protect(this.Identity),
-                //    expiration = timestamp
-                //}.ToJson().ToStream();
             }
         }
 

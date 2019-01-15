@@ -4,7 +4,7 @@
 // Created          : 2019-01-14  17:14
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-14  17:23
+// Last Modified On : 2019-01-15  10:53
 // *****************************************************************************************************************
 // <copyright file="TraceWriterExtensions.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
@@ -13,7 +13,6 @@
 
 using Newtonsoft.Json.Serialization;
 using System;
-using System.Diagnostics;
 using System.Net.Http;
 
 namespace NavyBlue.AspNetCore.Web.Diagnostics

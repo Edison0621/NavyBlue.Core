@@ -4,7 +4,7 @@
 // Created          : 2019-01-14  17:08
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-14  17:11
+// Last Modified On : 2019-01-15  10:56
 // *****************************************************************************************************************
 // <copyright file="ApplicationConfigurationsFetchRequest.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.

@@ -20,7 +20,7 @@ namespace NavyBlue.AspNetCore.Web.Diagnostics
     /// <summary>
     ///     NBExceptionLogger.
     /// </summary>
-    public sealed class NBExceptionLogger : ExceptionLogger
+    public sealed class NBExceptionLogger : ExceptionLogger 
     {
         private static readonly Lazy<IWebLogger> logger = new Lazy<IWebLogger>(() => InitApplicationLogger());
 

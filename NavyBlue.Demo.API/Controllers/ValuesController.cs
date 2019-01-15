@@ -4,7 +4,7 @@
 // Created          : 2019-01-10  18:53
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  19:25
+// Last Modified On : 2019-01-15  10:55
 // *****************************************************************************************************************
 // <copyright file="ValuesController.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
@@ -12,7 +12,6 @@
 // *****************************************************************************************************************
 
 using Microsoft.AspNetCore.Mvc;
-using NavyBlue.AspNetCore.Web;
 using NavyBlue.Demo.API.Model;
 using System.Collections.Generic;
 
@@ -46,7 +45,7 @@ namespace NavyBlue.Demo.API.Controllers
         [HttpPost]
         public IActionResult Post(UserInfo userInfo)
         {
-            return this.Ok(new { UserName = "edison",Age = 30 });
+            return this.Ok(new { UserName = "edison", Age = 30 });
         }
 
         // PUT api/values/5

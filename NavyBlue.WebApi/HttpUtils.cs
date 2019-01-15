@@ -1,10 +1,10 @@
 ﻿// *****************************************************************************************************************
 // Project          : NavyBlue
 // File             : HttpUtils.cs
-// Created          : 2019-01-09  20:20
+// Created          : 2019-01-14  17:14
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-10  15:03
+// Last Modified On : 2019-01-15  10:55
 // *****************************************************************************************************************
 // <copyright file="HttpUtils.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
@@ -13,7 +13,9 @@
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
+using NavyBlue.AspNetCore.Web.Extensions;
 using NavyBlue.NetCore.Lib;
 using ReflectionMagic;
 using System;
@@ -24,8 +26,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Primitives;
-using NavyBlue.AspNetCore.Web.Extensions;
 
 namespace NavyBlue.AspNetCore.Web
 {
@@ -237,6 +237,25 @@ namespace NavyBlue.AspNetCore.Web
         }
 
         /// <summary>
+        ///     Returns a dictionary of QueryStrings that's easier to work with
+        ///     than GetQueryNameValuePairs KevValuePairs collection.
+        ///     If you need to pull a few single values use GetQueryString instead.
+        /// </summary>
+        /// <param name="request">The instance of <see cref="HttpRequestMessage" />.</param>
+        /// <returns>The QueryStrings dictionary.</returns>
+        /// <exception cref="System.ArgumentNullException">If the request is null, throw the ArgumentNullException.</exception>
+        public static Dictionary<string, string> GetQueryStrings(HttpRequestMessage request)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            return request.GetQueryStrings()
+                .ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
         ///     Returns an individual querystring value.
         /// </summary>
         /// <param name="request">The instance of <see cref="HttpRequestMessage" />.</param>
@@ -263,25 +282,6 @@ namespace NavyBlue.AspNetCore.Web
 
             KeyValuePair<string, StringValues> match = queryStrings.FirstOrDefault(kv => string.Compare(kv.Key, key, StringComparison.OrdinalIgnoreCase) == 0);
             return string.IsNullOrEmpty(match.Value) ? StringValues.Empty : match.Value;
-        }
-
-        /// <summary>
-        ///     Returns a dictionary of QueryStrings that's easier to work with
-        ///     than GetQueryNameValuePairs KevValuePairs collection.
-        ///     If you need to pull a few single values use GetQueryString instead.
-        /// </summary>
-        /// <param name="request">The instance of <see cref="HttpRequestMessage" />.</param>
-        /// <returns>The QueryStrings dictionary.</returns>
-        /// <exception cref="System.ArgumentNullException">If the request is null, throw the ArgumentNullException.</exception>
-        public static Dictionary<string, string> GetQueryStrings(HttpRequestMessage request)
-        {
-            if (request == null)
-            {
-                throw new ArgumentNullException(nameof(request));
-            }
-
-            return request.GetQueryStrings()
-                .ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>

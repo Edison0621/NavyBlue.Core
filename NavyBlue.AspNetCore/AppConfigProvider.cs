@@ -4,17 +4,17 @@
 // Created          : 2019-01-14  17:08
 //
 // Last Modified By : (jstsmaxx@163.com)
-// Last Modified On : 2019-01-14  17:12
+// Last Modified On : 2019-01-15  10:57
 // *****************************************************************************************************************
 // <copyright file="AppConfigProvider.cs" company="Shanghai Future Mdt InfoTech Ltd.">
 //     Copyright ©  2012-2019 Mdt InfoTech Ltd. All rights reserved.
 // </copyright>
 // *****************************************************************************************************************
 
-using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NavyBlue.AspNetCore;
+using System;
 
 namespace NavyBlue.NetCore.Lib
 {
@@ -33,12 +33,12 @@ namespace NavyBlue.NetCore.Lib
         /// <returns>System.String.</returns>
         public virtual string GetAppKeysConfig()
         {
-            if (appConfig.Value.AppKeys.IsNullOrEmpty())
+            if (this.appConfig.Value.AppKeys.IsNullOrEmpty())
             {
                 throw new Exception("Missing config of \"AppKeys\"");
             }
 
-            return appConfig.Value.AppKeys.HtmlDecode();
+            return this.appConfig.Value.AppKeys.HtmlDecode();
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace NavyBlue.NetCore.Lib
         /// <returns>System.String.</returns>
         public virtual string GetEnvironmentConfig()
         {
-            return appConfig.Value.Env.IsNullOrEmpty() ? "DEV" : this.appConfig.Value.Env;
+            return this.appConfig.Value.Env.IsNullOrEmpty() ? "DEV" : this.appConfig.Value.Env;
         }
 
         /// <summary>
@@ -65,12 +65,12 @@ namespace NavyBlue.NetCore.Lib
         /// <returns>System.String.</returns>
         public virtual string GetRoleConfig()
         {
-            if (appConfig.Value.Role.IsNullOrEmpty())
+            if (this.appConfig.Value.Role.IsNullOrEmpty())
             {
                 throw new Exception("Missing config of \"Role\"");
             }
 
-            return appConfig.Value.Role;
+            return this.appConfig.Value.Role;
         }
 
         /// <summary>
