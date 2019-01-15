@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Net;
 using System.Text.RegularExpressions;
+using NavyBlue.AspNetCore.Web.Extensions;
 
 namespace NavyBlue.AspNetCore.Web.Filters
 {
@@ -72,7 +73,7 @@ namespace NavyBlue.AspNetCore.Web.Filters
         private bool IpIsAuthorized(AuthorizationFilterContext context)
         {
             HttpRequest request = context.HttpContext.Request;
-            string ip = HttpUtils.GetUserHostAddress(request.HttpContext);
+            string ip = HttpRequestExtensions.GetUserHostAddress(request.HttpContext.Request);
 
             if (string.IsNullOrEmpty(ip))
             {

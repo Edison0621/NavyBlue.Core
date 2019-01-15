@@ -24,6 +24,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using NavyBlue.AspNetCore.Web.Extensions;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {
@@ -123,7 +124,7 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
             {
                 this.AuthorizeApplicationIfFromWhitelistst(context.Request);
             }
-            else if (HttpUtils.IsFromLocalhost(context))
+            else if (HttpRequestExtensions.IsFromLocalhost(context))
             {
                 this.AuthorizeApplicationIfFromLocalhost();
             }

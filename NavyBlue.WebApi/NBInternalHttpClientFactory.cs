@@ -12,7 +12,7 @@
 // *****************************************************************************************************************
 
 using Microsoft.AspNetCore.Http;
-using NavyBlue.AspNetCore.Web.Diagnostics;
+using NavyBlue.AspNetCore.Web.Extensions;
 using NavyBlue.NetCore.Lib;
 using System;
 using System.Collections.Generic;

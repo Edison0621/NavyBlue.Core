@@ -17,9 +17,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
-using System.Text;
 using NavyBlue.AspNetCore;
 
 namespace NavyBlue.NetCore.Lib.Configs
