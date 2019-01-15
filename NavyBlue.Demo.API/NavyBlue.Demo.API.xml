@@ -4,6 +4,31 @@
         <name>NavyBlue.Demo.API</name>
     </assembly>
     <members>
+        <member name="T:NavyBlue.Demo.API.DemoConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NavyBlue.Demo.API.DemoConfig.BearerAuthKeys">
+            <summary>
+            Gets or sets the bearer authentication keys.
+            </summary>
+        </member>
+        <member name="P:NavyBlue.Demo.API.DemoConfig.GovernmentServerPublicKey">
+            <summary>
+            Gets or sets the government server public key.
+            </summary>
+        </member>
+        <member name="P:NavyBlue.Demo.API.DemoConfig.IPWhitelists">
+            <summary>
+            Gets the ip whitelists.
+            </summary>
+        </member>
+        <member name="P:NavyBlue.Demo.API.DemoConfig.Resources">
+            <summary>
+            Gets the resources.
+            </summary>
+        </member>
         <member name="T:NavyBlue.Demo.API.Startup">
             <summary>
             </summary>

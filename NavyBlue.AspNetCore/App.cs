@@ -161,15 +161,6 @@ namespace NavyBlue.NetCore.Lib
         }
 
         /// <summary>
-        ///     Configurations this instance.
-        /// </summary>
-        /// <returns>App.</returns>
-        public App Config()
-        {
-            return this.Config(new AppConfigProvider());
-        }
-
-        /// <summary>
         ///     Uses the configuration manager.
         /// </summary>
         /// <param name="configProvider">The configuration provider.</param>

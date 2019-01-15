@@ -35,30 +35,14 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
         private const string CRYPTO_SERVICE_PROVIDER_ERROR_MESSAGE = "NavyBlueAuthorizationHandler CryptoServiceProvider can not initialize. The GovernmentServerPublicKey may be in bad format. GovernmentServerPublicKey: {0}";
         private readonly RequestDelegate _next;
         private readonly NBAccessTokenProtector accessTokenProtector;
+        private readonly HttpContext httpContext;
 
-        public AuthorizationMiddleware(RequestDelegate next)
+        public AuthorizationMiddleware(RequestDelegate next, HttpContext httpContext, string bearerAuthKeys, string governmentServerPublicKey)
         {
             this._next = next;
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="AuthorizationMiddleware" /> class.
-        /// </summary>
-        /// <param name="bearerAuthKeys">The bearerAuthKeys.</param>
-        public AuthorizationMiddleware(string bearerAuthKeys)
-        {
-            this.accessTokenProtector = new NBAccessTokenProtector(bearerAuthKeys);
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="AuthorizationMiddleware" /> class.
-        /// </summary>
-        /// <param name="bearerAuthKeys">The bearerAuthKeys.</param>
-        /// <param name="governmentServerPublicKey">The government server public key.</param>
-        public AuthorizationMiddleware(string bearerAuthKeys, string governmentServerPublicKey)
-        {
             this.accessTokenProtector = new NBAccessTokenProtector(bearerAuthKeys);
             this.GovernmentServerPublicKey = governmentServerPublicKey;
+            this.httpContext = httpContext;
         }
 
         /// <summary>
@@ -97,8 +81,8 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 
         private ClaimsIdentity Identity
         {
-            get; //TODO { return new ClaimsIdentity(); } //HttpContext.Current.User?.Identity as ClaimsIdentity; }
-            set; //HttpContext.Current.User = new ClaimsPrincipal(value);
+            get { return this.httpContext.User?.Identity as ClaimsIdentity; }
+            set { this.httpContext.User = new ClaimsPrincipal(value); }
         }
 
         private List<string> IPWhitelists

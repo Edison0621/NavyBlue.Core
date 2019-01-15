@@ -12,6 +12,7 @@
 // *****************************************************************************************************************
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using NavyBlue.AspNetCore.Web.Middlewares.Middleware;
 
 namespace NavyBlue.AspNetCore.Web.Middlewares
@@ -28,9 +29,9 @@ namespace NavyBlue.AspNetCore.Web.Middlewares
             return builder.UseMiddleware<JsonResponseWarpperMiddleware>();
         }
 
-        public static IApplicationBuilder UseNBAuthorization(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseNBAuthorization(this IApplicationBuilder builder, HttpContext httpContext, string bearerAuthKeys, string governmentServerPublicKey)
         {
-            return builder.UseMiddleware<AuthorizationMiddleware>();
+            return builder.UseMiddleware<AuthorizationMiddleware>(httpContext, bearerAuthKeys, governmentServerPublicKey);
         }
 
         public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder builder)

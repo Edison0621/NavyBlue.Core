@@ -15,7 +15,12 @@ using NavyBlue.NetCore.Lib.Configs.GovernmentHttpClient;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
+using System.Text;
+using NavyBlue.AspNetCore;
 
 namespace NavyBlue.NetCore.Lib.Configs
 {
@@ -60,7 +65,7 @@ namespace NavyBlue.NetCore.Lib.Configs
 
                 return Task.Run(async () =>
                 {
-                    HttpResponseMessage response = await this.HttpClient.PostAsync("/api/Configurations", new StringContent(request.ToJson()));
+                    HttpResponseMessage response = await this.HttpClient.PostAsJsonAsync("/api/Configurations", request);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -81,40 +86,46 @@ namespace NavyBlue.NetCore.Lib.Configs
 
         private static Uri GetGovernmentBaseUri()
         {
-            //try
-            //{
-            //    string specifiedGovernmentBaseUri = ConfigurationManager.AppSettings.Get("GovernmentBaseUri");
-            //    if (specifiedGovernmentBaseUri.IsNotNullOrEmpty() && RegexUtility.UrlRegex.IsMatch(specifiedGovernmentBaseUri))
-            //    {
-            //        Uri governmentBaseUri = new Uri(specifiedGovernmentBaseUri);
-            //        return governmentBaseUri;
-            //    }
-            //}
-            //catch
-            //{
-            //    // ignored
-            //}
-
             return new Uri("http://localhost:6753/");
         }
 
         private static HttpClient InitHttpClient()
         {
-            //HttpClient client = HttpClientFactory.Create(new HttpClientHandler
-            //{
-            //    AllowAutoRedirect = true,
-            //    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            //}, new GovernmentHttpClientMessageHandler());
-
             HttpClient client = new HttpClient(new HttpClientHandler
             {
                 AllowAutoRedirect = true,
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-            });
+            })
+            {
+                BaseAddress = GetGovernmentBaseUri(),
+                Timeout = 1.Minutes()
+            };
 
-            client.BaseAddress = GetGovernmentBaseUri();
-            client.Timeout = 1.Minutes();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(NBAuthScheme.NBInternalAuth, RSATicket);
+            client.DefaultRequestHeaders.TryAddWithoutValidation("X-NB-CID", App.Host.RoleInstance);
+            client.DefaultRequestHeaders.TryAddWithoutValidation("X-NB-RID", Guid.NewGuid().ToGuidString());
+            client.DefaultRequestHeaders.TryAddWithoutValidation("X-NB-SID", Guid.NewGuid().ToGuidString());
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));
+            client.DefaultRequestHeaders.AcceptEncoding.Clear();
+            client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip", 0.8));
+            client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate", 0.2));
+
             return client;
+        }
+
+        private static string RSATicket
+        {
+            get
+            {
+                RSA rsa = RSA.Create();
+                rsa.FromRSAXmlString(App.Host.AppKeys);
+
+                string sign = rsa.SignData(App.Host.Role.GetBytesOfASCII(), HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1).ToBase64String();
+                string ticket = $"{App.Host.Role},{sign}".GetBytesOfASCII().ToBase64String();
+
+                return ticket;
+            }
         }
     }
 }

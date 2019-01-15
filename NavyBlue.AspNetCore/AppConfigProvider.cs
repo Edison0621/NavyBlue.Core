@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NavyBlue.AspNetCore;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace NavyBlue.NetCore.Lib
 {
@@ -23,7 +24,12 @@ namespace NavyBlue.NetCore.Lib
     /// </summary>
     public class AppConfigProvider : IAppConfigProvider
     {
-        private readonly IOptions<AppConfig> appConfig = NBHttpContext.Current.RequestServices.GetService<IOptions<AppConfig>>();
+        private readonly IOptions<AppConfig> appConfig;
+
+        public AppConfigProvider(IOptions<AppConfig> appConfig)
+        {
+            this.appConfig = appConfig;
+        }
 
         #region IAppConfigProvider Members
 

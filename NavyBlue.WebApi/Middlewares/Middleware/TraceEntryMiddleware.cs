@@ -12,11 +12,9 @@
 // *****************************************************************************************************************
 
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
 using NavyBlue.NetCore.Lib;
-using NavyBlue.NetCore.Lib.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

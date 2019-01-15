@@ -11,6 +11,9 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using Microsoft.Extensions.Options;
+using NavyBlue.AspNetCore;
+
 namespace NavyBlue.NetCore.Lib
 {
     /// <summary>
@@ -23,9 +26,9 @@ namespace NavyBlue.NetCore.Lib
         /// </summary>
         /// <param name="app">The application.</param>
         /// <returns></returns>
-        public static App InitConfig(this App app)
+        public static App InitConfig(this App app,IOptions<AppConfig> appConfig)
         {
-            return app.Config(new AppConfigProvider());
+            return app.Config(new AppConfigProvider(appConfig));
         }
     }
 }

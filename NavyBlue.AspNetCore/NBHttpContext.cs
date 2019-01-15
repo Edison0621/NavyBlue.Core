@@ -13,6 +13,7 @@
 
 using Microsoft.AspNetCore.Http;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace NavyBlue.NetCore.Lib
 {
@@ -24,10 +25,9 @@ namespace NavyBlue.NetCore.Lib
         {
             get
             {
-                object factory = ServiceProvider.GetService(typeof(IHttpContextAccessor));
+                var factory = ServiceProvider.GetService<IHttpContextAccessor>();
 
-                HttpContext context = ((HttpContextAccessor)factory).HttpContext;
-                return context;
+                return factory.HttpContext;
             }
         }
     }

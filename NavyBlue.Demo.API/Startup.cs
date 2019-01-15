@@ -19,6 +19,11 @@ using Microsoft.Extensions.DependencyInjection;
 using NavyBlue.AspNetCore.Web.Middlewares;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
+using NavyBlue.NetCore.Lib;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
+using NavyBlue.AspNetCore;
 
 namespace NavyBlue.Demo.API
 {
@@ -32,6 +37,12 @@ namespace NavyBlue.Demo.API
         /// <param name="configuration">The configuration.</param>
         public Startup(IConfiguration configuration)
         {
+            //var builder = new ConfigurationBuilder()
+            //    .SetBasePath(configuration..ContentRootPath)
+            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            //    .AddEnvironmentVariables();
+            //Configuration = builder.Build();
+
             this.Configuration = configuration;
         }
 
@@ -57,9 +68,17 @@ namespace NavyBlue.Demo.API
                 app.UseHsts();
             }
 
+            
+            object httpContext = app.ApplicationServices.GetService(typeof(IHttpContextAccessor));
+
+            App.Initialize().InitConfig(app.ApplicationServices.GetService<IOptions<AppConfig>>()).UseGovernmentServerConfigManager<DemoConfig>(); //original
+            string bearerAuthKeys = App.Configurations.GetConfig<DemoConfig>().BearerAuthKeys.HtmlDecode();
+            string governmentServerPublicKey = App.Configurations.GetConfig<DemoConfig>().GovernmentServerPublicKey.HtmlDecode();
+
             app.UseTraceEntry();
-            app.UseNBAuthorization();
-            app.us();
+            app.UseNBAuthorization(((HttpContextAccessor)httpContext).HttpContext, bearerAuthKeys, governmentServerPublicKey);
+            //app.UseNBAuthorization();
+            app.UseExceptionHandling();
 
             app.UseHttpsRedirection();
             app.UseMvc();
@@ -74,6 +93,8 @@ namespace NavyBlue.Demo.API
         /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerGen(p =>
