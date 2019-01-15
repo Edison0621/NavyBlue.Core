@@ -58,8 +58,8 @@ namespace NavyBlue.Demo.API
             }
 
             app.UseTraceEntry();
-            app.UseJsonResponseWapper();
-            //app.UseNBAuthorization();
+            app.UseNBAuthorization();
+            app.us();
 
             app.UseHttpsRedirection();
             app.UseMvc();

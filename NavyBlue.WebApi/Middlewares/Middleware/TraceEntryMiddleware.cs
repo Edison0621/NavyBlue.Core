@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
 using NavyBlue.NetCore.Lib;
+using NavyBlue.NetCore.Lib.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -24,13 +25,11 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 {
     public class TraceEntryMiddleware : INavyBlueMiddleware
     {
-        private readonly ILogger _logger;
         private readonly RequestDelegate _next;
 
-        public TraceEntryMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
+        public TraceEntryMiddleware(RequestDelegate next)
         {
             this._next = next;
-            this._logger = loggerFactory.CreateLogger<TraceEntryMiddleware>();
         }
 
         private List<string> IPWhitelists
@@ -46,7 +45,7 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            this._logger.LogInformation("Handling API key for: " + context.Request.Path);
+            App.LogManager.CreateLogger().Info("Handling API key for: " + context.Request.Path);
 
             if (!context.Items.ContainsKey("X-NB-CID"))
             {
@@ -99,7 +98,7 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 
             await this._next.Invoke(context);
 
-            this._logger.LogInformation("Finished tracing.");
+            App.LogManager.CreateLogger().Info("Finished tracing.");
         }
 
         #endregion INavyBlueMiddleware Members

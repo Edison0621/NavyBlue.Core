@@ -123,7 +123,7 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
         /// <exception cref="T:System.ArgumentNullException">The <paramref name="request" /> was null.</exception>
         public async Task Invoke(HttpContext context)
         {
-            if (HasAuthorizationHeader(context.Request, NBAuthScheme.Bearer) && context.Request.Headers[HeaderNames.Authorization] != StringValues.Empty)
+            if (HasAuthorizationHeader(context.Request, NBAuthScheme.Bearer) && context.Request.Headers["X-NB-Authorization"] != StringValues.Empty)
             {
                 this.AuthorizeUserViaBearerToken(context.Request);
             }

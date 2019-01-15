@@ -33,6 +33,12 @@ namespace NavyBlue.AspNetCore.Web.Middlewares
             return builder.UseMiddleware<AuthorizationMiddleware>();
         }
 
+        public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder builder)
+        {
+            //ExceptionHandlerExtensions
+            return builder.UseMiddleware<ExceptionHandlingMiddleware>();
+        }
+
         /// <summary>
         ///     Uses the trace entry.
         /// </summary>
