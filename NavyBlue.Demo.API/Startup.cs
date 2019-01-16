@@ -19,9 +19,8 @@ using Microsoft.Extensions.DependencyInjection;
 using NavyBlue.AspNetCore.Web.Middlewares;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
-using NavyBlue.NetCore.Lib;
+using NavyBlue.AspNetCore.Lib;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using NavyBlue.AspNetCore;
 
@@ -68,7 +67,6 @@ namespace NavyBlue.Demo.API
                 app.UseHsts();
             }
 
-            
             object httpContext = app.ApplicationServices.GetService(typeof(IHttpContextAccessor));
 
             App.Initialize().InitConfig(app.ApplicationServices.GetService<IOptions<AppConfig>>()).UseGovernmentServerConfigManager<DemoConfig>(); //original
@@ -76,9 +74,9 @@ namespace NavyBlue.Demo.API
             string governmentServerPublicKey = App.Configurations.GetConfig<DemoConfig>().GovernmentServerPublicKey.HtmlDecode();
 
             app.UseTraceEntry();
-            app.UseNBAuthorization(((HttpContextAccessor)httpContext).HttpContext, bearerAuthKeys, governmentServerPublicKey);
-            //app.UseNBAuthorization();
+            //app.UseNBAuthorization(((HttpContextAccessor)httpContext).HttpContext, bearerAuthKeys, governmentServerPublicKey);
             app.UseExceptionHandling();
+            app.UseJsonResponseWapper();
 
             app.UseHttpsRedirection();
             app.UseMvc();
@@ -100,7 +98,6 @@ namespace NavyBlue.Demo.API
             services.AddSwaggerGen(p =>
             {
                 p.SwaggerDoc("v1", new Info { Title = "API", Version = "v1" });
-                //AppContext.BaseDirectory
                 p.IncludeXmlComments(Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), "NavyBlue.Demo.API.xml"));
             });
         }

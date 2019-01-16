@@ -11,9 +11,9 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using NavyBlue.NetCore.Lib.Loggers;
+using NavyBlue.AspNetCore.Lib.Loggers;
 
-namespace NavyBlue.NetCore.Lib
+namespace NavyBlue.AspNetCore.Lib
 {
     /// <summary>
     ///     AppWebExtensions.

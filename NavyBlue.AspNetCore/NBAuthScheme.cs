@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-namespace NavyBlue.NetCore.Lib
+namespace NavyBlue.AspNetCore.Lib
 {
     /// <summary>
     ///     NBAuthScheme.

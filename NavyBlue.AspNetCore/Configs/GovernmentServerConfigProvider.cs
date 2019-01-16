@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using NavyBlue.NetCore.Lib.Configs.GovernmentHttpClient;
+using NavyBlue.AspNetCore.Lib.Configs.GovernmentHttpClient;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using NavyBlue.AspNetCore;
 
-namespace NavyBlue.NetCore.Lib.Configs
+namespace NavyBlue.AspNetCore.Lib.Configs
 {
     /// <summary>
     ///     GovernmentServerConfigProvider.

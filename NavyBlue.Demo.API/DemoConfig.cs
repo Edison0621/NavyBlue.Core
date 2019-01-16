@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using NavyBlue.NetCore.Lib.Configs;
+using NavyBlue.AspNetCore.Lib.Configs;
 using System.Collections.Generic;
 
 namespace NavyBlue.Demo.API

@@ -13,11 +13,11 @@
 
 using System.Collections.Generic;
 
-namespace NavyBlue.NetCore.Lib.Configs
+namespace NavyBlue.AspNetCore.Lib.Configs
 {
     /// <summary>
     /// </summary>
-    /// <seealso cref="NavyBlue.NetCore.Lib.Configs.IConfig" />
+    /// <seealso cref="NavyBlue.AspNetCore.Lib.Configs.IConfig" />
     internal class NBConfig : IConfig
     {
         #region IConfig Members

@@ -17,7 +17,7 @@ using NavyBlue.AspNetCore;
 using System;
 using Microsoft.AspNetCore.Http;
 
-namespace NavyBlue.NetCore.Lib
+namespace NavyBlue.AspNetCore.Lib
 {
     /// <summary>
     ///     AppConfigProvider.

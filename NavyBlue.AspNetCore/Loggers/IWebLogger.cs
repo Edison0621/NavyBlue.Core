@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace NavyBlue.NetCore.Lib.Loggers
+namespace NavyBlue.AspNetCore.Lib.Loggers
 {
     /// <summary>
     ///     Interface IWebLogger

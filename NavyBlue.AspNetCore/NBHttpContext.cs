@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NavyBlue.NetCore.Lib
+namespace NavyBlue.AspNetCore.Lib
 {
     public class NBHttpContext
     {

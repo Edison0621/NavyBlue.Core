@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NavyBlue.NetCore.Lib
+namespace NavyBlue.AspNetCore.Lib
 {
     /// <summary>
     ///     MessageContent.

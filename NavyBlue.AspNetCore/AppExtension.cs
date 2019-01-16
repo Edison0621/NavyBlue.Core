@@ -14,7 +14,7 @@
 using Microsoft.Extensions.Options;
 using NavyBlue.AspNetCore;
 
-namespace NavyBlue.NetCore.Lib
+namespace NavyBlue.AspNetCore.Lib
 {
     /// <summary>
     ///     AppAzureExtension.

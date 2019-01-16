@@ -18,7 +18,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace NavyBlue.NetCore.Lib.Loggers
+namespace NavyBlue.AspNetCore.Lib.Loggers
 {
     /// <summary>
     ///     WADWebLogger.

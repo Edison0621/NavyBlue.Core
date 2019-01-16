@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace NavyBlue.NetCore.Lib.Loggers
+namespace NavyBlue.AspNetCore.Lib.Loggers
 {
     /// <summary>
     ///     WADLogger.

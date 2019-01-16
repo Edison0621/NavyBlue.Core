@@ -11,9 +11,12 @@
 // </copyright>
 // *****************************************************************************************************************
 
+using System;
 using Microsoft.AspNetCore.Mvc;
 using NavyBlue.Demo.API.Model;
 using System.Collections.Generic;
+using NavyBlue.AspNetCore.Lib;
+using Newtonsoft.Json;
 
 namespace NavyBlue.Demo.API.Controllers
 {
@@ -45,6 +48,12 @@ namespace NavyBlue.Demo.API.Controllers
         [HttpPost]
         public IActionResult Post(UserInfo userInfo)
         {
+            //JsonConvert.SerializeObject(userInfo);
+
+            //userInfo.ToJson().FromJson<UserInfo>();
+
+            //GuidUtility.NewSequentialGuid().ToGuidString()
+
             return this.Ok(new { UserName = "edison", Age = 30 });
         }
 

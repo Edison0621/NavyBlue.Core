@@ -13,7 +13,7 @@
 
 using System;
 
-namespace NavyBlue.NetCore.Lib.Configs
+namespace NavyBlue.AspNetCore.Lib.Configs
 {
     /// <summary>
     ///     Interface IConfigProvider

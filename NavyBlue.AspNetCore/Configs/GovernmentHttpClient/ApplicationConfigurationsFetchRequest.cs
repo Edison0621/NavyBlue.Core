@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-namespace NavyBlue.NetCore.Lib.Configs.GovernmentHttpClient
+namespace NavyBlue.AspNetCore.Lib.Configs.GovernmentHttpClient
 {
     /// <summary>
     ///     ApplicationConfigurationsFetchRequest.

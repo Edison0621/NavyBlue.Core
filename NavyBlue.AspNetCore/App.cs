@@ -11,11 +11,11 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using NavyBlue.NetCore.Lib.Configs;
-using NavyBlue.NetCore.Lib.Loggers;
+using NavyBlue.AspNetCore.Lib.Configs;
+using NavyBlue.AspNetCore.Lib.Loggers;
 using System;
 
-namespace NavyBlue.NetCore.Lib
+namespace NavyBlue.AspNetCore.Lib
 {
     /// <summary>
     ///     App.

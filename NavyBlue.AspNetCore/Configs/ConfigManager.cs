@@ -16,7 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace NavyBlue.NetCore.Lib.Configs
+namespace NavyBlue.AspNetCore.Lib.Configs
 {
     /// <summary>
     ///     ConfigManager.

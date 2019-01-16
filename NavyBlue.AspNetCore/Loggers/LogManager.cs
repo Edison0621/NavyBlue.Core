@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-namespace NavyBlue.NetCore.Lib.Loggers
+namespace NavyBlue.AspNetCore.Lib.Loggers
 {
     /// <summary>
     ///     LogManager.
