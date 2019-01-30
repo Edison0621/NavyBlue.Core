@@ -15,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading;
 
-namespace NavyBlue.AspNetCore.Configuration.Extensions
+namespace NavyBlue.AspNetCore.ConsulConfiguration.Extensions
 {
     /// <summary>
     /// </summary>

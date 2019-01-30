@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavyBlue.ServiceGovern", "N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavyBlue.Demo.ServiceGovern", "NavyBlue.Demo.ServiceGovern\NavyBlue.Demo.ServiceGovern.csproj", "{DBAFFF67-60F5-4F8B-AA0E-1C048770A806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavyBlue.AspNetCore.Configuration", "NavyBlue.AspNetCore.Configuration\NavyBlue.AspNetCore.Configuration.csproj", "{FB4C657C-E108-4DC4-A93A-6247A4CC548C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavyBlue.AspNetCore.ConsulConfiguration", "NavyBlue.AspNetCore.Configuration\NavyBlue.AspNetCore.ConsulConfiguration.csproj", "{FB4C657C-E108-4DC4-A93A-6247A4CC548C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,7 +11,7 @@
 // </copyright>
 // *****************************************************************************************************************
 
-namespace NavyBlue.AspNetCore.Configuration
+namespace NavyBlue.AspNetCore.ConsulConfiguration
 {
     public interface IConsulConfiguration
     {

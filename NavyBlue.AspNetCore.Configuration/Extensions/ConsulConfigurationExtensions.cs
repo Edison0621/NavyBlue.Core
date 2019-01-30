@@ -23,7 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 
-namespace NavyBlue.AspNetCore.Configuration.Extensions
+namespace NavyBlue.AspNetCore.ConsulConfiguration.Extensions
 {
     public static class ConsulConfigurationExtensions
     {

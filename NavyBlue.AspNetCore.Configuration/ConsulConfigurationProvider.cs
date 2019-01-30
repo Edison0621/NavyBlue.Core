@@ -14,12 +14,12 @@
 using Consul;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
-using NavyBlue.AspNetCore.Configuration.Extensions;
+using NavyBlue.AspNetCore.ConsulConfiguration.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace NavyBlue.AspNetCore.Configuration
+namespace NavyBlue.AspNetCore.ConsulConfiguration
 {
     internal sealed class ConsulConfigurationProvider : ConfigurationProvider
     {

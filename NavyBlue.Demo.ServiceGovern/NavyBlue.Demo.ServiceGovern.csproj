@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NavyBlue.AspNetCore.Configuration\NavyBlue.AspNetCore.Configuration.csproj" />
+    <ProjectReference Include="..\NavyBlue.AspNetCore.Configuration\NavyBlue.AspNetCore.ConsulConfiguration.csproj" />
     <ProjectReference Include="..\NavyBlue.ServiceGovern\NavyBlue.ServiceGovern.csproj" />
   </ItemGroup>
 

@@ -16,7 +16,7 @@ using Microsoft.Extensions.Primitives;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NavyBlue.AspNetCore.Configuration
+namespace NavyBlue.AspNetCore.ConsulConfiguration
 {
     /// <summary>
     /// </summary>

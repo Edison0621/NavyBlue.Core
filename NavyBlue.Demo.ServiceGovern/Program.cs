@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using NavyBlue.AspNetCore.Configuration.Extensions;
 using System;
 using System.Threading;
-using Consul;
+using NavyBlue.AspNetCore.ConsulConfiguration.Extensions;
 
 namespace NavyBlue.Demo.ServiceGovern
 {

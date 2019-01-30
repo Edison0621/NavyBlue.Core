@@ -14,7 +14,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
-using NavyBlue.AspNetCore.Configuration.Extensions;
+using NavyBlue.AspNetCore.ConsulConfiguration.Extensions;
 
 namespace NavyBlue.Demo.ServiceGovern.Controllers
 {

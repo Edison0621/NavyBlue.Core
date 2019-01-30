@@ -1,4 +1,4 @@
-﻿using NavyBlue.AspNetCore.Configuration;
+﻿using NavyBlue.AspNetCore.ConsulConfiguration;
 
 namespace NavyBlue.Demo.ServiceGovern
 {

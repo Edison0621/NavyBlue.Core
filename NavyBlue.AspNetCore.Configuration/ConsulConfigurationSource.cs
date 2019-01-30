@@ -17,7 +17,7 @@ using System;
 using System.Net.Http;
 using System.Threading;
 
-namespace NavyBlue.AspNetCore.Configuration
+namespace NavyBlue.AspNetCore.ConsulConfiguration
 {
     internal sealed class ConsulConfigurationSource : IConsulConfigurationSource
     {

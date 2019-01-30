@@ -13,7 +13,7 @@
 
 using Consul;
 
-namespace NavyBlue.AspNetCore.Configuration.Extensions
+namespace NavyBlue.AspNetCore.ConsulConfiguration.Extensions
 {
     internal static class ConsulExtensions
     {
