@@ -13,6 +13,8 @@
 
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using NavyBlue.AspNetCore.Configuration.Extensions;
 
 namespace NavyBlue.Demo.ServiceGovern.Controllers
 {
@@ -20,6 +22,14 @@ namespace NavyBlue.Demo.ServiceGovern.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IConfiguration configuration;
+
+        public ValuesController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
@@ -30,6 +40,8 @@ namespace NavyBlue.Demo.ServiceGovern.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            var result = this.configuration.GetConsulConfiguration<NavyBlueConfiguration>("userservice");
+
             return new[] { "value1", "value2" };
         }
 

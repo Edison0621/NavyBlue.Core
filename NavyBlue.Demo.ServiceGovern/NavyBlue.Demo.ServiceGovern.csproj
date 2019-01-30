@@ -9,7 +9,13 @@
     <PackageReference Include="Consul" Version="0.7.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NavyBlue.AspNetCore.Configuration\NavyBlue.AspNetCore.Configuration.csproj" />
+    <ProjectReference Include="..\NavyBlue.ServiceGovern\NavyBlue.ServiceGovern.csproj" />
   </ItemGroup>
 
 </Project>

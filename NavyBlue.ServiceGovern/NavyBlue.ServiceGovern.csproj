@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Consul" Version="0.7.2.6" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NavyBlue.AspNetCore.Configuration\NavyBlue.AspNetCore.Configuration.csproj" />
+    <ProjectReference Include="..\NavyBlue.AspNetCore\NavyBlue.AspNetCore.csproj" />
+  </ItemGroup>
+
 </Project>

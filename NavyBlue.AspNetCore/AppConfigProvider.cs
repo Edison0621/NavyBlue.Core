@@ -11,11 +11,8 @@
 // </copyright>
 // *****************************************************************************************************************
 
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using NavyBlue.AspNetCore;
 using System;
-using Microsoft.AspNetCore.Http;
 
 namespace NavyBlue.AspNetCore.Lib
 {

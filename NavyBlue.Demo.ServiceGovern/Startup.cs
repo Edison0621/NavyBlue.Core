@@ -3,15 +3,25 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NavyBlue.AspNetCore;
+using NavyBlue.ServiceGovern;
 using System;
 
 namespace NavyBlue.Demo.ServiceGovern
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder();
+
+            builder.SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            AppConfigUtility.ConfigManager = builder.Build();
+
+            AppConfigUtility.CallbackRegistration = AppConfigUtility.ConfigManager.GetReloadToken().RegisterChangeCallback(AppConfigUtility.OnSettingChanged, AppConfigUtility.ConfigManager);
+
+            this.Configuration = AppConfigUtility.ConfigManager;
         }
 
         public IConfiguration Configuration { get; }
@@ -32,9 +42,7 @@ namespace NavyBlue.Demo.ServiceGovern
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            ServiceRegisterEntity serviceRegister = Configuration.GetSection("ServiceRegisterEntity").Get<ServiceRegisterEntity>();
-
-            app.RegisterConsul(lifetime, serviceRegister);
+            app.RegisterConsul(lifetime);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
