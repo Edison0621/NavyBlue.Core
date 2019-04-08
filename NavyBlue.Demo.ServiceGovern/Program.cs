@@ -23,12 +23,12 @@ namespace NavyBlue.Demo.ServiceGovern
                         options.ReloadOnChange = true;
                     }).AddEnvironmentVariables();
 
-                    builder.AddConsul("commonservice", cancellationTokenSource.Token, options =>
-                    {
-                        options.ConsulConfigurationOptions = cco => { cco.Address = new Uri("http://localhost:8500"); };
-                        options.Optional = true;
-                        options.ReloadOnChange = true;
-                    }).AddEnvironmentVariables();
+                    //builder.AddConsul("commonservice", cancellationTokenSource.Token, options =>
+                    //{
+                    //    options.ConsulConfigurationOptions = cco => { cco.Address = new Uri("http://localhost:8500"); };
+                    //    options.Optional = true;
+                    //    options.ReloadOnChange = true;
+                    //}).AddEnvironmentVariables();
                 }).UseStartup<Startup>().Build().Run();
         }
     }

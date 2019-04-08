@@ -33,7 +33,7 @@ namespace NavyBlue.ServiceGovern
                 string address = GetAddress(serviceInfo);
                 string httpScheme = serviceInfo.IsHttps ? "https://" : "http://";
 
-                AgentServiceRegistration registration = BuildServiceRegistration(serviceInfo, address, httpScheme);
+                AgentServiceRegistration registration = BuildServiceRegistration(serviceInfo, "localhost", httpScheme);
 
                 consulClient.Agent.ServiceRegister(registration).Wait();
 
