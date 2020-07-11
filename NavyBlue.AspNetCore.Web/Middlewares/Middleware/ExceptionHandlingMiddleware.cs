@@ -24,7 +24,7 @@ namespace NavyBlue.AspNetCore.Web.Middlewares.Middleware
 
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;
                 context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(ex?.Error?.Message ?? "an error occure");
+                await context.Response.WriteAsync(ex.Error.Message);
             }
 
             await this.next.Invoke(context);
